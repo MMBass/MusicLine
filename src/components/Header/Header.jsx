@@ -24,6 +24,7 @@ const Header = ({ className, ...props }) => {
 
   return (
     <AppBar position="static" className={className}>
+       <div className="gcse-searchresults"></div>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
 
@@ -50,6 +51,7 @@ const Header = ({ className, ...props }) => {
           </Typography>
 
           <NavBar className="nav-bar"></NavBar>
+
         </Toolbar>
       </Container>
     </AppBar>

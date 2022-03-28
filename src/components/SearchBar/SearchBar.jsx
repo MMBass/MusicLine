@@ -1,25 +1,41 @@
+import { useEffect, useState } from "react";
+
 import { TextField } from "@mui/material";
 
-function SearchBar({className}) {
+import { linesInterval } from '../../services/gscModalEditor.service.js';
 
-  function HandleSearch(event){
+function SearchBar({ className }) {
+
+  function HandleSearch(event) {
     let gsc_input = document.querySelector('#gsc-i-id1');
-    if(gsc_input){
+    if (gsc_input) {
       gsc_input.value = event.target.value;
-      gsc_input.dispatchEvent(new Event('keyup'))
-      // let gsc_input = document.querySelector('#gsc-i-id1');
-    }else{
+
+      let gsc_btn = document.querySelectorAll('.gsc-search-box button')[0];
+      if (gsc_btn) {
+
+        gsc_btn.dispatchEvent(new Event('click'));
+        linesInterval();
+
+      } else {
+        console.error("no gsc loaded");
+      }
+    } else {
       console.error("no gsc loaded");
     }
   }
 
   return (
     <div id="" className={className}>
-          <TextField id="outlined-search" label="חפש שיר" type="search" className="main-input" onChange={HandleSearch} autoFocus={true} />
-          {/* TODO search icon */}
-          <div className="gcse-search"></div>
+      <TextField id="outlined-search" label="חפש שיר" type="search" className="main-input" onChange={HandleSearch} autoFocus={true} />
+      {/* TODO search icon ? */}
+
+      <div className="gcse-search"></div>
+
     </div>
   );
+
 }
+
 
 export default SearchBar;

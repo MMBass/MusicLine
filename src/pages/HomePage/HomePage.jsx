@@ -4,14 +4,13 @@ import { default as SearchBar } from '@components/SearchBar/StyledSearchBar';
 import { linesInterval } from '../../services/gscModalEditor.service.js';
 
 function HomePage({ className }) {
-  
+
   function HandleSubmit(e) {
     e.preventDefault();
     let gsc_btn = document.querySelectorAll('.gsc-search-box button')[0];
     if (gsc_btn) {
       gsc_btn.dispatchEvent(new Event('click'));
       linesInterval();
-      // let gsc_input = document.querySelector('#gsc-i-id1');
     } else {
       console.error("no gsc loaded");
     }
@@ -19,6 +18,7 @@ function HomePage({ className }) {
   }
 
   return (
+
     <div className={className}>
       <Typography variant="h2" className="page-h2">
         שירים מתורגמים
@@ -40,6 +40,7 @@ function HomePage({ className }) {
       </Box>
     </div >
   );
+
 };
 
 export default HomePage;
