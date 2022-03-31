@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 
 import { TextField } from "@mui/material";
 
-import { linesInterval } from '../../services/gscModalEditor.service.js';
-
 function SearchBar({ className }) {
 
   function HandleSearch(event) {
@@ -14,8 +12,9 @@ function SearchBar({ className }) {
       let gsc_btn = document.querySelectorAll('.gsc-search-box button')[0];
       if (gsc_btn) {
 
-        gsc_btn.dispatchEvent(new Event('click'));
-        linesInterval();
+        setTimeout(() => {
+            gsc_btn.dispatchEvent(new Event('click'));
+        }, 100 * Math.floor(Math.random() * 4));
 
       } else {
         console.error("no gsc loaded");

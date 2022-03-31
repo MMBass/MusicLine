@@ -1,7 +1,7 @@
 import { Typography, Box } from "@mui/material";
 import { default as SearchBar } from '@components/SearchBar/StyledSearchBar';
 
-import { linesInterval } from '../../services/gscModalEditor.service.js';
+import { linesChange } from '../../services/gscModalEditor.service.js';
 
 function HomePage({ className }) {
 
@@ -10,7 +10,7 @@ function HomePage({ className }) {
     let gsc_btn = document.querySelectorAll('.gsc-search-box button')[0];
     if (gsc_btn) {
       gsc_btn.dispatchEvent(new Event('click'));
-      linesInterval();
+      // linesChange();
     } else {
       console.error("no gsc loaded");
     }

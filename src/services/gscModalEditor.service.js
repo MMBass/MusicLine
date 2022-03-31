@@ -4,31 +4,52 @@
 
 import { callLyrics } from "./callLyrics";
 
-export let linesInterval = ()=>{
-    let interval = setInterval(() => {
+window.onload = () => {
+    const targetNode = document.querySelectorAll("#___gcse_0 .gsc-results-wrapper-nooverlay")[0];
+    const observerOptions = {
+        childList: false,
+        attributes: true,
+
+        // Omit (or set to false) to observe only changes to the parent node
+        subtree: false
+    }
+
+    function callback() {
+        linesChange();
+    }
+
+    const observer = new MutationObserver(callback);
+    observer.observe(targetNode, observerOptions);
+}
+
+
+export let linesChange = () => {
+    setTimeout(() => {
         let lines = document.querySelectorAll(".gs-title");
 
         if (lines) {
-            clearInterval(interval);
             lines.forEach((line, i) => {
                 if (line.innerText.includes("Lyrics")) {
+                    line.innerText = line.innerText.replace('| Musixmatch', " ");
 
-                    line.innerText = line.innerText.replace('Lyrics | Musixmatch', " ");
-
-                    line.addEventListener('click',()=>{
+                    line.addEventListener('click', () => {
                         console.log('clicked url')
                         callLyrics();
                     });
 
-                } else {
-                    line.parentElement.parentElement.remove();
+                } else if (!line.innerText.includes("Lyrics")) {
+
+                    if (line.parentElement.parentElement.parentElement.className.includes('gsc-webResult')) {
+                        line.parentElement.parentElement.parentElement.remove();
+                    }
+
                 }
-    
+
             });
-            
+
         }
-    }, 500);
-} 
+    }, 50);
+}
 
 // leave just the lines with Lyrics - and remove the word Lyrics also
 

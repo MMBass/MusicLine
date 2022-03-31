@@ -1,4 +1,4 @@
-import { useEffect, useContext, useRef } from 'react';
+import { useState, useEffect, useContext, useRef } from 'react';
 import { HashRouter as Router, Routes, Route } from "react-router-dom";
 
 import musixmatchAxios from '../apis/musixmatchUrls';
@@ -19,6 +19,7 @@ import { default as Footer } from '@components/Footer/StyledFooter';
 import { default as Drawer } from '@components/Drawer/StyledDrawer';
 import { default as Dialog } from '@components/Dialog/StyledDialog';
 import { default as Modal } from '@components/Modal/StyledModal';
+import { default as HiddenGetLyricsForm } from '@components/HiddenGetLyricsForm/StyledHiddenGetLyricsForm';
 import { LinearProgress, CircularProgress, Snackbar, Alert, AlertTitle } from '@mui/material';
 
 import { default as HomePage } from '@pages/HomePage/StyledHomePage';
@@ -32,6 +33,7 @@ function App({ className }) {
   const bannersContext = useContext(BannersContext);
 
   const appElement = useRef(null);
+  const [mounted, setMounted] = useState(false);
 
   // Create rtl cache
   const cacheRtl = createCache({
@@ -40,12 +42,24 @@ function App({ className }) {
   });
 
   function init() {
-  
+    loadScript();
+
   }
+
+  const loadScript = () => {
+    const script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src = "https://cse.google.com/cse.js?cx=a85c2374ffc8b8898";
+    script.defer = true;
+    document.body.appendChild(script);
+    // <script defer src="https://cse.google.com/cse.js?cx=a85c2374ffc8b8898"></script>
+    // <script defer src="/src/services/google-search-a85c2374ffc8b8898.js"></script>
+    // ./assets/google-search-a85c2374ffc8b8898.js
+  };
 
   useEffect(() => {
     init();
-
+    setMounted(true);
     window.onscroll = () => {
       handleScroll();
     }
@@ -115,6 +129,7 @@ function App({ className }) {
           <Footer></Footer>
         </Router>
       </CacheProvider>
+      <HiddenGetLyricsForm></HiddenGetLyricsForm>
     </div>
   );
 }
