@@ -16,7 +16,7 @@ const contact = [{ name: 'example@gmail.com', url: 'mailto:example@gmail.com' }]
 function Footer({ className }) {
   return (
     <div id="FOOTER" className={className}>
-      <Grid container rowSpacing={6} columnSpacing={2}>
+      {/* <Grid container rowSpacing={6} columnSpacing={2}>
         <Grid item xs={12} sm={4}>
           <List>
             <ListSubheader
@@ -73,7 +73,7 @@ function Footer({ className }) {
           </List>
 
         </Grid>
-      </Grid>
+      </Grid> */}
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 
-import { ArrowForward } from '@mui/icons-material';
+import { ArrowBack } from '@mui/icons-material';
 import {
   List,
   ListItem,
@@ -18,7 +18,7 @@ function SidePagesList() {
           <ListItem button key={page.name}>
             <ListItemText primary={page.name} />
             <ListItemIcon>
-              <ArrowForward />
+              <ArrowBack />
             </ListItemIcon>
           </ListItem>
         </NavLink>
