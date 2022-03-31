@@ -19,7 +19,7 @@ var _=Object.defineProperty,j=Object.defineProperties;var q=Object.getOwnPropert
   }
 `;function Be(n){var o=n,{className:e}=o,r=f(o,["className"]);return t("div",{className:e,children:r.children})}const Fe=d(Be)`
   height: 100vh;
-  min-height: 420px;
+  min-height: 700px;
   background-color: ${e=>e.theme.palette.primary.light};
 `,Re=[{name:"\u05D4\u05D9\u05E1\u05D8\u05D5\u05E8\u05D9\u05D4",url:"/history"}],Oe=[{name:"\u05E4\u05D9\u05D9\u05E1\u05D1\u05D5\u05E7",url:"https://facebook.com"}],$e=[{name:"example@gmail.com",url:"mailto:example@gmail.com"}];function He({className:e}){return t("div",{id:"FOOTER",className:e,children:l(y,{container:!0,rowSpacing:6,columnSpacing:2,children:[t(y,{item:!0,xs:12,sm:4,children:l(v,{children:[t(L,{variant:"h5",component:"h5",children:"\u05E2\u05DE\u05D5\u05D3\u05D9\u05DD"}),Re.map((r,n)=>t(A,{to:r.url,children:t(E,{children:t(b,{primary:r.name})},n)},n))]})}),t(y,{item:!0,xs:12,sm:4,children:l(v,{children:[t(L,{variant:"h5",component:"h5",children:"\u05E2\u05E7\u05D1\u05D5 \u05D0\u05D7\u05E8\u05D9\u05E0\u05D5"}),Oe.map((r,n)=>t(B,{href:r.url,children:t(E,{children:t(b,{primary:r.name})},n)},n))]})}),t(y,{item:!0,xs:12,sm:4,children:l(v,{children:[t(L,{variant:"h5",component:"h5",children:"\u05E6\u05D5\u05E8 \u05E7\u05E9\u05E8"}),$e.map((r,n)=>t(B,{href:r.url,children:t(E,{children:t(b,{primary:r.name})},n)},n))]})})]})})}const ze=d(He)`
   color: ${e=>e.theme.palette.secondary.dark};
@@ -94,6 +94,7 @@ var _=Object.defineProperty,j=Object.defineProperties;var q=Object.getOwnPropert
 
 `;function tt({className:e}){const r=u.exports.useContext(S),n=u.exports.useContext(O),o=u.exports.useContext($),a=u.exports.useRef(null),[s,i]=u.exports.useState(!1),h=ce({key:"muirtl",stylisPlugins:[De,fe]});function D(){k()}const k=()=>{const m=document.createElement("script");m.type="text/javascript",m.src="https://cse.google.com/cse.js?cx=a85c2374ffc8b8898",m.defer=!0,document.body.appendChild(m)};u.exports.useEffect(()=>{D(),i(!0),window.onscroll=()=>{z()}},[]);const z=()=>{a.current&&window.pageYOffset>a.current.offsetTop},I=m=>{o.toggleBanner(m)};return l("div",{className:e,ref:a,children:[t(le,{value:h,children:l(ue,{children:[t(Se,{}),t(Te,{className:"header"}),o.main.open&&l(F,{severity:"warning",className:"main-alert",children:[t(de,{children:o.main.title}),o.main.message]}),t(Fe,{children:l(pe,{children:[t(N,{path:"/",element:t(Qe,{className:"page"})}),t(N,{path:"/about",element:t(Xe,{className:"page"})}),t(N,{path:"*",element:t(et,{className:"page"})})]})}),r.open&&r.child&&t(_e,{className:"drawer"}),n.main.open&&t(he,{color:n.main.color||"primary"}),n.circular.open&&t(me,{color:n.main.color||"primary"}),o.snackbar.open&&t(ge,{open:o.snackbar.open,autoHideDuration:6e3,onClose:()=>{},children:t(F,{onClose:()=>{I("snackbar")},severity:o.snackbar.severity,sx:{width:"100%"},children:o.snackbar.message})}),t(ze,{})]})}),t(Ue,{})]})}const rt=d(tt)`
   height: 100vh;
+  min-height: 700px;
   color: ${e=>e.theme.palette.secondary.main};
 
   .page-h2{
