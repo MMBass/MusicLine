@@ -34,7 +34,7 @@ function SearchBar({ className }) {
 
   return (
     <div id="" className={className}>
-      <TextField id="outlined-search" label="חפש שיר" type="search" className="main-input" onChange={HandleSearch} autoFocus={true} autoComplete='on'/>
+      <TextField id="outlined-search" label="חפש שיר" type="search" className="main-input" onChange={HandleSearch} autoFocus={false} autoComplete='on'/>
       {/* TODO search icon ? */}
 
       <div className="gcse-search"></div>
