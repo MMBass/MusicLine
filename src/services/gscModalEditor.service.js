@@ -30,11 +30,18 @@ export let linesChange = () => {
         if (lines) {
             lines.forEach((line, i) => {
                 if (line.innerText.includes("Lyrics")) {
-                    line.innerText = line.innerText.replace('| Musixmatch', " ");
 
-                    line.addEventListener('click', () => {
-                        console.log('clicked url')
-                        callLyrics();
+                    let songTitle = line.innerText.replace('Lyrics | Musixmatch', " ");
+                    line.innerText = songTitle;
+                    const currSong = {
+                        artistName : songTitle.split('-')[0],
+                        songtName : songTitle.split('-')[1]
+                    }
+                    
+  
+
+                    line.addEventListener('click', (e) => {
+                        callLyrics(currSong);
                     });
 
                 } else if (!line.innerText.includes("Lyrics")) {

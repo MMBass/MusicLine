@@ -4,6 +4,7 @@ import App from './App';
 
 const StyledApp = styled(App)`
   height: 100vh;
+  height: fit-content;
   min-height: 700px;
   color: ${props => props.theme.palette.secondary.main};
 

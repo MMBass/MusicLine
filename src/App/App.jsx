@@ -1,8 +1,6 @@
 import { useState, useEffect, useContext, useRef } from 'react';
 import { HashRouter as Router, Routes, Route } from "react-router-dom";
 
-import musixmatchAxios from '../apis/musixmatchUrls';
-
 import rtlPlugin from 'stylis-plugin-rtl';
 import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
@@ -33,7 +31,6 @@ function App({ className }) {
   const bannersContext = useContext(BannersContext);
 
   const appElement = useRef(null);
-  const [mounted, setMounted] = useState(false);
 
   // Create rtl cache
   const cacheRtl = createCache({
@@ -43,7 +40,6 @@ function App({ className }) {
 
   function init() {
     loadScript();
-
   }
 
   const loadScript = () => {
@@ -52,6 +48,7 @@ function App({ className }) {
     script.src = "https://cse.google.com/cse.js?cx=a85c2374ffc8b8898";
     script.defer = true;
     document.body.appendChild(script);
+    // 0d8465f607b0b1227 // MusixMatch2 id
     // <script defer src="https://cse.google.com/cse.js?cx=a85c2374ffc8b8898"></script>
     // <script defer src="/src/services/google-search-a85c2374ffc8b8898.js"></script>
     // ./assets/google-search-a85c2374ffc8b8898.js
@@ -59,10 +56,6 @@ function App({ className }) {
 
   useEffect(() => {
     init();
-    setMounted(true);
-    window.onscroll = () => {
-      handleScroll();
-    }
   }, []);
 
   const handleScroll = () => {
