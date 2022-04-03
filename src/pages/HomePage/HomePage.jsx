@@ -1,8 +1,6 @@
 import { Typography, Box } from "@mui/material";
 import { default as SearchBar } from '@components/SearchBar/StyledSearchBar';
 
-import { linesChange } from '../../services/gscModalEditor.service.js';
-
 function HomePage({ className }) {
 
   function HandleSubmit(e) {
@@ -10,8 +8,6 @@ function HomePage({ className }) {
     let gsc_btn = document.querySelectorAll('.gsc-search-box button')[0];
     if (gsc_btn) {
       gsc_btn.dispatchEvent(new Event('click'));
-      // linesChange();
-
        // clear gsc input
       
     } else {
@@ -47,6 +43,7 @@ function HomePage({ className }) {
       <div id="lyrics">
 
       </div>
+      <div className="gcse-search"></div>
     </div >
   );
 
