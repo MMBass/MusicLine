@@ -29,7 +29,6 @@ export let linesChange = () => {
 
         if (lines) {
             lines.forEach((line, i) => {
-                
                 if (line.innerText.includes("Lyrics")) {
 
                     let songTitle = line.innerText.replace('Lyrics | Musixmatch', " ");
@@ -39,8 +38,9 @@ export let linesChange = () => {
                         songtName : songTitle.split('-')[1]
                     }
                     
+  
+
                     line.addEventListener('click', (e) => {
-                        console.log("dksla");
                         callLyrics(currSong);
                     });
 
