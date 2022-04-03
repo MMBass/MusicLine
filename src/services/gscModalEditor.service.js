@@ -4,60 +4,59 @@
 
 import { callLyrics } from "./callLyrics";
 
-// window.onload = () => {
-//     const targetNode = document.querySelectorAll("#___gcse_0 .gsc-results-wrapper-nooverlay")[0];
-//     const observerOptions = {
-//         childList: false,
-//         attributes: true,
+window.onload = () => {
+    const targetNode = document.querySelectorAll("#___gcse_0 .gsc-results-wrapper-nooverlay")[0];
+    const observerOptions = {
+        childList: false,
+        attributes: true,
 
-//         // Omit (or set to false) to observe only changes to the parent node
-//         subtree: false
-//     }
+        // Omit (or set to false) to observe only changes to the parent node
+        subtree: false
+    }
 
-//     function callback() {
-//         linesChange();
-//     }
+    function callback() {
+        linesChange();
+    }
 
-//     const observer = new MutationObserver(callback);
-//     observer.observe(targetNode, observerOptions);
-// }
+    const observer = new MutationObserver(callback);
+    observer.observe(targetNode, observerOptions);
+}
 
 
-// export let linesChange = () => {
-//     setTimeout(() => {
-//         let lines = document.querySelectorAll(".gs-title");
+export let linesChange = () => {
+    setTimeout(() => {
+        let lines = document.querySelectorAll(".gs-title");
 
-//         if (lines) {
-//             lines.forEach((line, i) => {
-//                 console.log(line.innerText)
-//                 if (line.innerText.includes("Lyrics")) {
+        if (lines) {
+            lines.forEach((line, i) => {
+                
+                if (line.innerText.includes("Lyrics")) {
 
-//                     let songTitle = line.innerText.replace('Lyrics | Musixmatch', " ");
-//                     line.innerText = songTitle;
-//                     const currSong = {
-//                         artistName : songTitle.split('-')[0],
-//                         songtName : songTitle.split('-')[1]
-//                     }
+                    let songTitle = line.innerText.replace('Lyrics | Musixmatch', " ");
+                    line.innerText = songTitle;
+                    const currSong = {
+                        artistName : songTitle.split('-')[0],
+                        songtName : songTitle.split('-')[1]
+                    }
                     
-  
+                    line.addEventListener('click', (e) => {
+                        console.log("dksla");
+                        callLyrics(currSong);
+                    });
 
-//                     line.addEventListener('click', (e) => {
-//                         callLyrics(currSong);
-//                     });
+                } else if (!line.innerText.includes("Lyrics")) {
 
-//                 } else if (!line.innerText.includes("Lyrics")) {
+                    if (line.parentElement.parentElement.parentElement.className.includes('gsc-webResult')) {
+                        line.parentElement.parentElement.parentElement.remove();
+                    }
 
-//                     if (line.parentElement.parentElement.parentElement.className.includes('gsc-webResult')) {
-//                         line.parentElement.parentElement.parentElement.remove();
-//                     }
+                }
 
-//                 }
+            });
 
-//             });
-
-//         }
-//     }, 50);
-// }
+        }
+    }, 50);
+}
 
 // leave just the lines with Lyrics - and remove the word Lyrics also
 

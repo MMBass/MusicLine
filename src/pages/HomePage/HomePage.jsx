@@ -8,6 +8,7 @@ function HomePage({ className }) {
     let gsc_btn = document.querySelectorAll('.gsc-search-box button')[0];
     if (gsc_btn) {
       gsc_btn.dispatchEvent(new Event('click'));
+
        // clear gsc input
       
     } else {
