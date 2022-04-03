@@ -14,7 +14,7 @@ const StyledApp = styled(App)`
     font-weight: 400;
     color: ${props => props.theme.palette.secondary.main};
     @media (max-width: 600px) {
-      font-size: 55px;
+      font-size: 50px;
     }
   }
 
@@ -24,7 +24,7 @@ const StyledApp = styled(App)`
     font-weight: 500;
     color: ${props => props.theme.palette.secondary.main};
     @media (max-width: 600px) {
-      font-size: 29px;
+      font-size: 26px;
     }
   }
 

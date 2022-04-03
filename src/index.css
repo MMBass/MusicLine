@@ -63,7 +63,7 @@ body {
 }
 
 .gsc-url-top{
-  display: none;
+  display: none !important;
 }
 
 .gsc-webResult a, .gsc-result a{
@@ -71,7 +71,7 @@ body {
 /* display: inline; */
 }
 
-.gsc-url-top,.gs-bidi-start-align, .gs-visibleUrl ,.gs-visibleUrl-breadcrumb .gsc-table-result *{ 
+.gsc-url-top, .gs-bidi-start-align, .gs-visibleUrl ,.gs-visibleUrl-breadcrumb .gsc-table-result *{ 
   display: none;
 }
 

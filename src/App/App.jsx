@@ -56,6 +56,7 @@ function App({ className }) {
 
   useEffect(() => {
     init();
+
   }, []);
 
   const handleScroll = () => {
