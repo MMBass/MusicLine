@@ -109,7 +109,7 @@ var T=Object.defineProperty,B=Object.defineProperties;var _=Object.getOwnPropert
     font-weight: 400;
     color: ${e=>e.theme.palette.secondary.main};
     @media (max-width: 600px) {
-      font-size: 55px;
+      font-size: 50px;
     }
   }
 
@@ -119,7 +119,7 @@ var T=Object.defineProperty,B=Object.defineProperties;var _=Object.getOwnPropert
     font-weight: 500;
     color: ${e=>e.theme.palette.secondary.main};
     @media (max-width: 600px) {
-      font-size: 29px;
+      font-size: 26px;
     }
   }
 
