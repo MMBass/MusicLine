@@ -72,7 +72,21 @@ function App({ className }) {
   }
 
   const handleCloseSnackbar = (name) => {
-    bannersContext.toggleBanner(name);
+    bannersContext.closeBanner(name);
+  }
+
+  function HandleSubmit(e) {
+    e.preventDefault();
+    let gsc_btn = document.querySelectorAll('.gsc-search-box button')[0];
+    if (gsc_btn) {
+      gsc_btn.dispatchEvent(new Event('click'));
+
+      // clear gsc input
+
+    } else {
+      console.error("no gsc loaded");
+    }
+
   }
 
   return (
@@ -80,7 +94,7 @@ function App({ className }) {
       <CacheProvider value={cacheRtl}>
         <Router>
           <HeadTags></HeadTags>
-          <Header className="header"></Header>
+          <Header className="header" HandleSubmit={HandleSubmit}></Header>
           {(bannersContext.main.open) &&
             <Alert severity="warning" className='main-alert'>
               <AlertTitle>{bannersContext.main.title}</AlertTitle>

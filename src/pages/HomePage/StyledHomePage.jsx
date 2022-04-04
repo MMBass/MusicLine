@@ -2,7 +2,6 @@ import { styled } from '@mui/material/styles';
 import HomePage from './HomePage';
 
 const StyledHomePage = styled(HomePage)`
-    padding: 35px;
 
     .MuiTextField-root { 
         margin-top: 35px;

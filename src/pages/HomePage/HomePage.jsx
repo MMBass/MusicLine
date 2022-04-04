@@ -1,19 +1,22 @@
+import { useContext } from "react";
+
 import { Typography, Box } from "@mui/material";
 import { default as SearchBar } from '@components/SearchBar/StyledSearchBar';
+import { default as LyricsBody } from '@components/LyricsBody/StyledLyricsBody';
 
-import { linesChange } from '../../services/gscModalEditor.service.js';
+import { CurrLyricsContext } from '@context/CurrLyricsContext';
 
 function HomePage({ className }) {
+  const currLyricsContext = useContext(CurrLyricsContext);
 
   function HandleSubmit(e) {
     e.preventDefault();
     let gsc_btn = document.querySelectorAll('.gsc-search-box button')[0];
     if (gsc_btn) {
       gsc_btn.dispatchEvent(new Event('click'));
-      // linesChange();
 
-       // clear gsc input
-      
+      // clear gsc input
+
     } else {
       console.error("no gsc loaded");
     }
@@ -23,17 +26,19 @@ function HomePage({ className }) {
   return (
 
     <div className={className}>
-      <div id="no_lyrics">
-        <Typography variant="h2" className="page-h2">
-          שירים מתורגמים
-          <br></br>
-          שורה אחר שורה
-        </Typography>
-        <Typography variant="h3" className="page-h3">
-          לימוד אנגלית באמצעות מוזיקה
-        </Typography>
-        {/* todo disappear the headers when search  */}
-      </div>
+      {!currLyricsContext.currLyrics &&
+        <div>
+          <Typography variant="h2" className="page-h2">
+            שירים מתורגמים
+            <br></br>
+            שורה אחר שורה
+          </Typography>
+          <Typography variant="h3" className="page-h3">
+            לימוד אנגלית באמצעות מוזיקה
+          </Typography>
+        </div>
+      }
+
 
       <Box
         component="form"
@@ -43,10 +48,11 @@ function HomePage({ className }) {
       >
         <SearchBar></SearchBar>
       </Box>
-      
-      <div id="lyrics">
 
-      </div>
+      {currLyricsContext.currLyrics &&
+        <LyricsBody></LyricsBody>
+      }
+
     </div >
   );
 

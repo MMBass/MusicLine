@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 
-import {Menu as MenuIcon} from '@mui/icons-material';
+import { Menu as MenuIcon } from '@mui/icons-material';
 import {
   AppBar,
   Box,
@@ -14,12 +14,13 @@ import { default as SidePagesList } from '../SidePagesList/StyledSidePagesList';
 import { default as NavBar } from '@components/NavBar/StyledNavBar';
 
 import { DrawerContext } from '@context/DrawerContext';
+import { NavLink } from 'react-router-dom';
 
 const Header = ({ className, ...props }) => {
   const drawerContext = useContext(DrawerContext);
 
   const handleOpenNavMenu = () => {
-    drawerContext.toggleDrawer(true, 'left', 'temporary', SidePagesList);
+    drawerContext.openDrawer(true, 'left', 'temporary', SidePagesList);
   };
 
   return (
@@ -40,14 +41,16 @@ const Header = ({ className, ...props }) => {
             </IconButton>
           </Box>
 
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ mr: 2, display: 'flex' }}
-          >
-            מיוזיק ליין
-          </Typography>
+          <NavLink to={'/'} >
+            <Typography
+              variant="h6"
+              noWrap
+              component="div"
+              sx={{ mr: 2, display: 'flex' }}
+            >
+              מיוזיק ליין
+            </Typography>
+          </NavLink>
 
           <NavBar className="nav-bar"></NavBar>
 

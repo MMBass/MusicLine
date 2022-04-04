@@ -15,15 +15,23 @@ export default function BannersContextProvider(props) {
         setBanners({ ...banners, [name]: { open: false, severity: severity || "success", title: title || "", mesaage: mesaage || "" } });
     }
 
-    const toggleBanner = (name) => {
+    const openBanner = (name) => {
         if (banners[name]) {
-            setBanners({ ...banners, [name]: { ...banners[name], open: !banners[name].open } });
+            setBanners({ ...banners, [name]: { ...banners[name], open: true } });
         } else {
             console.error("Banner does'nt exist. Name: " + name);
         }
     }
 
-    const actions = { createBanner, toggleBanner };
+    const closeBanner = (name) => {
+        if (banners[name]) {
+            setBanners({ ...banners, [name]: { ...banners[name], open: false } });
+        } else {
+            console.error("Banner does'nt exist. Name: " + name);
+        }
+    }
+
+    const actions = { createBanner, openBanner, closeBanner};
 
     return (
         <BannersContext.Provider value={{ ...banners, ...actions }}>

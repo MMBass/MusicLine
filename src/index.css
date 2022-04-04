@@ -12,9 +12,6 @@ body {
   background: silver;
 }
 
-
-
-
 /* Search results style, dom elements out of REACT */
 #___gcse_0 {
   /* margin-top: 30px; */
@@ -60,6 +57,7 @@ body {
 .gsc-webResult{
   /* min-height: 50px; */
   padding: 5px;
+  cursor: pointer;
 }
 
 .gsc-url-top{
@@ -95,11 +93,3 @@ body {
   display: none !important;
 }
 /* END Search results style, dom elements out of REACT */
-
-
-#lyrics{
-  font-family: 'Assistant','Roboto', 'sans-serif';
-  font-size: 20px;
-  padding: 10px;
-  margin-top: 50px;
-}

@@ -8,6 +8,13 @@ const StyledApp = styled(App)`
   min-height: 700px;
   color: ${props => props.theme.palette.secondary.main};
 
+  a{
+      color: #fff;
+      &hover{
+        color: #fff;
+      }
+  }
+
   .page-h2{
     padding: 30px 0px 0px 0px;
     font-size: 80px; 

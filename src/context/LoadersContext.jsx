@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 export const LoadersContext = React.createContext(undefined);
 
@@ -9,21 +9,29 @@ export default function LoadersContextProvider(props) {
     });
 
     const createLoader = (name, color) => {
-        if (loaders.name) {
+        if (loaders[name]) {
             setLoaders({ ...loaders, [name]: undefined });
         }
         setLoaders({ ...loaders, [name]: { open: false, color: color || "primary" } });
     }
 
-    const toggleLoader = (name) => {
-        if (loaders.name) {
-            setLoaders({ ...loaders, [name]: { ...loaders.name, open: !loaders.name.open } });
+    const openLoader = (name) => {
+        if (loaders[name]) {
+            setLoaders({ ...loaders, [name]: { ...loaders[name], open: true} });
         } else {
             console.error("Loader does'nt exist. Name: " + name);
         }
     }
 
-    const actions = { createLoader, toggleLoader };
+    const closeLoader = (name) => {
+        if (loaders[name]) {
+            setLoaders({ ...loaders, [name]: { ...loaders[name], open: false } });
+        } else {
+            console.error("Loader does'nt exist. Name: " + name);
+        }
+    }
+
+    const actions = { createLoader, openLoader, closeLoader };
 
     return (
         <LoadersContext.Provider value={{ ...loaders, ...actions }}>
