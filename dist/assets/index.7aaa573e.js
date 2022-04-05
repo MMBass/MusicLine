@@ -85,7 +85,7 @@ var q=Object.defineProperty,j=Object.defineProperties;var G=Object.getOwnPropert
   margin-top: 50px;
 
   @media (max-width: 600px) {
-      padding-inline-start: 30px;
+      padding-inline-start: 15px;
   }
 
   .en-line{
