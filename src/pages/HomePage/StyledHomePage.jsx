@@ -18,6 +18,9 @@ const StyledHomePage = styled(HomePage)`
         border-color: white;
     }
 
+    .lyrics-body, .MuiGrid-root, .muirtl-mhc70k-MuiGrid-root{
+        direction: ltr;
+    }
     
 `;
 

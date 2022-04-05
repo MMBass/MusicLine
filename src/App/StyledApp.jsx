@@ -51,6 +51,16 @@ const StyledApp = styled(App)`
     background-color: #2D4260;
     border-radius: unset;
   }
+
+
+  .toolTip-title{
+    text-align: center;
+  }
+
+  .tt-body *{
+    color: blue;
+    text-align: center;
+  }
 `;
 
 export default StyledApp;

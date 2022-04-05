@@ -50,7 +50,7 @@ function HomePage({ className }) {
       </Box>
 
       {currLyricsContext.currLyrics &&
-        <LyricsBody></LyricsBody>
+        <LyricsBody className={'lyrics-body'}></LyricsBody>
       }
 
     </div >
