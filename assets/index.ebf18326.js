@@ -76,7 +76,7 @@ var q=Object.defineProperty,j=Object.defineProperties;var G=Object.getOwnPropert
 `;function Je(n){var a=n,{className:e}=a,r=v(a,["className"]);l.exports.useEffect(()=>{o()},[]);const o=()=>{};return t(de,{className:e,title:p(A,{children:[t(g,{color:"inherit",children:" \u05EA\u05E8\u05D2\u05D5\u05DE\u05D9\u05DD \u05E0\u05D5\u05E1\u05E4\u05D9\u05DD:"}),p("div",{className:"tt-body",children:[t("p",{className:"tt-p",children:"\u05EA\u05E8\u05D2\u05D5\u05DD"}),t("hr",{}),t("p",{className:"tt-p",children:"\u05EA\u05E8\u05D2\u05D5\u05DD"}),t("hr",{}),t("p",{className:"tt-p",children:"\u05EA\u05E8\u05D2\u05D5\u05DD"})]})]}),arrow:!0,sx:{color:"white"},enterDelay:0,enterTouchDelay:0,leaveTouchDelay:60*1e3,children:t("p",{className:"single-lyric",children:r.lyric})})}const Qe=d(Je)`
   
 `;function Xe({className:e}){const r=l.exports.useContext(C);return t(E,{children:t(S,{container:!0,spacing:2,children:r.lines&&t("div",{id:"lyrics_body",className:e,children:r.lines.map((n,a)=>p(A,{children:[t(S,{className:"lyrics-line en-line",item:!0,children:n.split(" ").map((o,s)=>t(Qe,{lyric:o},s))},a.toString()+Math.floor(Math.random()*3e4)),t(S,{item:!0,className:"lyrics-line he-line",children:n.split(" ").map((o,s)=>{if(s===0)return t("small",{className:"single-trans",children:o&&"\u05D8\u05D5\u05E2\u05DF \u05EA\u05E8\u05D2\u05D5\u05DD.."},s)})},a.toString()+Math.floor(Math.random()*3e4))]}))})})})}const Ye=d(Xe)`
-   max-width: 90%;
+   /* max-width: 90%; */
   font-family: 'Assistant','Roboto', 'sans-serif';
   /* text-align: center; */
   font-size: 20px;
