@@ -3,9 +3,10 @@ import React from 'react';
 import DrawerContextProvider from './DrawerContext';
 import BannersContextProvider from './BannersContext';
 import LoadersContextProvider from './LoadersContext';
-import CurrLyricsContext from './CurrLyricsContext';
+import SettingsContextProvider from './SettingsContext';
+import CurrLyricsContextProvider from './CurrLyricsContext';
 
-const components = [DrawerContextProvider, BannersContextProvider, LoadersContextProvider, CurrLyricsContext];
+const components = [SettingsContextProvider, DrawerContextProvider, BannersContextProvider, LoadersContextProvider, CurrLyricsContextProvider];
 
 export default function ContextComposer(props) {
   return (

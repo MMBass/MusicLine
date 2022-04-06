@@ -11,7 +11,7 @@ const StyledLyricsBody = styled(LyricsBody)`
   margin-top: 50px;
 
   @media (max-width: 600px) {
-      padding-inline-start: 15px;
+    padding-inline-start: 15px;
   }
 
   .en-line{
@@ -29,17 +29,36 @@ const StyledLyricsBody = styled(LyricsBody)`
   }
 
   .single-lyric, .single-trans{
-     
-          display: inline;
-          min-width:unset;
-          padding: 0px 5px;
-          text-transform: none;
-          font-size: 14px;
+    display: inline;
+    min-width:unset;
+    padding: 0px 5px;
+    text-transform: none;
   }
 
   .single-lyric{
     cursor: pointer;
-          font-size: 25px;
+  }
+
+  .he-line{
+      /* font-size: 14px; */
+      font-size: ${props => (props.fontSize.md - 5) + 'px'};
+  }
+
+  .en-line{
+      /* font-size: 20px; */
+      font-size: ${props => props.fontSize.md + 'px'};
+  }
+
+  @media (max-width: 600px) {
+      .he-line{
+        /* font-size: 14px; */
+        font-size: ${props => (props.fontSize.md - 5) + 'px'};
+      }
+
+      .en-line{
+        /* font-size: 20px; */
+        font-size: ${props => props.fontSize.md + 'px'};
+      }
   }
 
 `;

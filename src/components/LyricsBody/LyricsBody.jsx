@@ -9,45 +9,33 @@ import { default as LyricToolTip } from '@components/LyricToolTip/StyledLyricToo
 
 import { CurrLyricsContext } from '@context/CurrLyricsContext';
 
-function LyricsBody({ className }) {
+function LyricsBody({ className, ...props }) {
   const currLyricsContext = useContext(CurrLyricsContext);
-
-  // function ToolTipTitle() {
-  //   return (
-  //     <React.Fragment>
-  //       <Typography color="inherit">Tooltip with HTML</Typography>
-  //       <em>{"And here's"}</em> <b>{'some'}</b> <u>{'amazing content'}</u>.{' '}
-  //       {"It's very engaging. Right?"}
-  //     </React.Fragment>
-  //   )
-  // }
 
   return (
     <Box>
       <Grid container spacing={2}>
         {currLyricsContext.lines &&
           <div id="lyrics_body" className={className}>
-            {currLyricsContext.lines.map((line, i) => {
+            {currLyricsContext.lines.map((line, y) => {
               return (
-                <>
-                  <Grid className="lyrics-line en-line" item key={i.toString() + Math.floor(Math.random() * 30000)}>
-                    {line.split(' ').map((word, i) => {
+                <div>
+                  <Grid className="lyrics-line en-line" item key={y.toString() + Math.floor(Math.random() * 30000)}>
+                    {line.src.split(' ').map((word, i) => {
                       return (
                         <LyricToolTip key={i} lyric={word}></LyricToolTip>
                       )
                     })}
                   </Grid>
 
-                  <Grid item className="lyrics-line he-line" key={i.toString() + Math.floor(Math.random() * 30000)}>
-                    {line.split(' ').map((word, i) => {
-                      if(i === 0){
+                  <Grid item className="lyrics-line he-line" key={y.toString() + Math.floor(Math.random() * 30000)}>
+                    {line.trans.split(' ').map((word, i) => {
                         return (
-                          <small className="single-trans" key={i}>{word && 'טוען תרגום..'}</small>
+                          <small className="single-trans" key={i}>{word && word}</small>
                         )
-                      }
                     })}
                   </Grid>
-                </>
+                </div>
               );
             })}
           </div>}

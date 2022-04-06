@@ -24,19 +24,23 @@ function LyricToolTip({ className, ...props }) {
       title={
         <>
           <Typography color="inherit"> תרגומים נוספים:</Typography>
-          <div className="tt-body" >
-            <p className="tt-p">{"תרגום"}</p>
-            <hr></hr>
-            <p className="tt-p">{"תרגום"}</p>
-            <hr></hr>
-            <p className="tt-p">{"תרגום"}</p>
+          <div className="tt-body" style={{textAlign:"center"}}>
+            {
+              ["", "", ""].map(() => {
+                return(<>
+                  <p className="tt-p">{"תרגום"}</p>
+                  <hr></hr>
+                </>)
+              })
+            }
           </div>
 
         </>}
       arrow sx={{ color: 'white' }}
       enterDelay={0}
-      enterTouchDelay={0}
-      leaveTouchDelay={60*1000}
+      enterTouchDelay={5}
+      leaveTouchDelay={60 * 1000}
+      leaveDelay={0}
     >
       <p className="single-lyric">{props.lyric}</p>
     </Tooltip>

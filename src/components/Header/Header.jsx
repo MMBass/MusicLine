@@ -1,13 +1,17 @@
 import { useContext } from 'react';
 
 import { Menu as MenuIcon } from '@mui/icons-material';
+
+import { default as ChangeSize } from '@components/ChangeSize/StyledChangeSize';
+
 import {
   AppBar,
   Box,
   Toolbar,
   IconButton,
   Typography,
-  Container
+  Container,
+
 } from '@mui/material';
 
 import { default as SidePagesList } from '../SidePagesList/StyledSidePagesList';
@@ -51,6 +55,8 @@ const Header = ({ className, ...props }) => {
               מיוזיק ליין
             </Typography>
           </NavLink>
+
+           <ChangeSize></ChangeSize>
 
           <NavBar className="nav-bar"></NavBar>
 
