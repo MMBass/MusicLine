@@ -18,10 +18,13 @@ import { default as SidePagesList } from '../SidePagesList/StyledSidePagesList';
 import { default as NavBar } from '@components/NavBar/StyledNavBar';
 
 import { DrawerContext } from '@context/DrawerContext';
+import { CurrLyricsContext } from '@context/CurrLyricsContext';
+
 import { NavLink } from 'react-router-dom';
 
 const Header = ({ className, ...props }) => {
   const drawerContext = useContext(DrawerContext);
+  const currLyricsContext = useContext(CurrLyricsContext);
 
   const handleOpenNavMenu = () => {
     drawerContext.openDrawer(true, 'left', 'temporary', SidePagesList);
@@ -56,7 +59,7 @@ const Header = ({ className, ...props }) => {
             </Typography>
           </NavLink>
 
-           <ChangeSize></ChangeSize>
+          {currLyricsContext.lines[0] && <ChangeSize></ChangeSize>} 
 
           <NavBar className="nav-bar"></NavBar>
 

@@ -44,7 +44,7 @@ function SearchBar({ className }) {
             }
 
             line.addEventListener('click', (e) => {
-              currLyricsContext.handleSet(currSong);
+              currLyricsContext.getLines(currSong);
             });
 
           } else if (!line.innerText.includes("Lyrics")) {

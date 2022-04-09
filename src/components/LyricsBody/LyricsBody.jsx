@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useLayoutEffect} from "react";
 
 import {
   Grid,
@@ -11,6 +11,11 @@ import { CurrLyricsContext } from '@context/CurrLyricsContext';
 
 function LyricsBody({ className, ...props }) {
   const currLyricsContext = useContext(CurrLyricsContext);
+
+  useEffect(() => {
+    // console.log(currLyricsContext.lines);
+    currLyricsContext.checkNextTrans();
+  }, [currLyricsContext,currLyricsContext.cou]);
 
   return (
     <Box>
@@ -29,11 +34,18 @@ function LyricsBody({ className, ...props }) {
                   </Grid>
 
                   <Grid item className="lyrics-line he-line" key={y.toString() + Math.floor(Math.random() * 30000)}>
-                    {line.trans.split(' ').map((word, i) => {
-                        return (
-                          <small className="single-trans" key={i}>{word && word}</small>
-                        )
-                    })}
+                    <>
+                      {
+                        line.trans?.length > 2 ?
+                          line.trans.split(' ').map((word, i) => {
+                            return (
+                              <small onLoad={()=>{currLyricsContext.checkNextTrans()}} className="single-trans" key={i}>{word}</small>
+                            )
+                          })
+                          :
+                          <small className="single-trans">טוען תרגום...</small>
+                      }
+                    </>
                   </Grid>
                 </div>
               );

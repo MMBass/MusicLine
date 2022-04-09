@@ -46,6 +46,8 @@ const StyledLyricsBody = styled(LyricsBody)`
 
   .en-line{
       /* font-size: 20px; */
+      direction: rtl;
+      text-align: left;
       font-size: ${props => props.fontSize.md + 'px'};
   }
 
