@@ -8,7 +8,7 @@ export default axios.create({
         // 'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
     },
     params: {
-        'apikey': 'd98598e033ac1e0ad0a3335990d12579', // todo move to node server + config var
+         // todo move to node server + config var
         'page_size': '10',
         'page': '1',
         'format': 'json',

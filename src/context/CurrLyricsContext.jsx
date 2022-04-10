@@ -11,13 +11,27 @@ export default function CurrLyricsContextProvider(props) {
     const [lines, setLines] = useState([]);
     const [cou, setCou] = useState(0); // helps to force useEffect
 
+    const serverUri = 'https://musicline-backend-basssites.vercel.app';
+    
+    // const serverUri = 'http://localhost:5000';
+
     const getLines = (currSong) => {
         loadersContext.openLoader('main');
 
-        let cors = `https://cors-anywhere.herokuapp.com/`;
-        let musixMatch = `http://api.musixmatch.com/ws/1.1/`;
+        // let cors = `https://cors-anywhere.herokuapp.com/`;
+        // let musixMatch = `http://api.musixmatch.com/ws/1.1/`;
 
-        fetch(cors + musixMatch + `matcher.lyrics.get?apikey=d98598e033ac1e0ad0a3335990d12579&q_track=${encodeURI(currSong.songtName)}&q_artist=${encodeURI(currSong.artistName)}`)
+        fetch(`${serverUri}/lyrics`, {
+            method: 'post',
+            // mode: "no-cors",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                "currSong": encodeURI(currSong)
+            })
+        })
             .then(response => response.json())
             .then(data => {
                 loadersContext.closeLoader('main');
@@ -44,13 +58,12 @@ export default function CurrLyricsContextProvider(props) {
     }
 
     const checkNextTrans = () => {
-        console.log("check");
         let count = false;
         for (let index = 0; index < lines.length; index++) {
             let line = lines[index];
             if(count === true){
                 break;
-            }else if (line.trans.length <= 1) {
+            }else if (line.trans.length <= 1 || line.trans === 'טוען תרגום..') {
                 count = true;
                 getLinesTrans(line.src, index);
                 break;
@@ -61,13 +74,11 @@ export default function CurrLyricsContextProvider(props) {
     }
 
     const getLinesTrans = (src, index) => {
-        fetch(`http://localhost:5000/line-trans`, {
+        fetch(`${serverUri}/line-trans`, {
             method: 'post',
-            // mode: 'cors',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
-                // 'Content-Type': 'application/x-www-form-urlencoded',
             },
             body: JSON.stringify({
                 "line": encodeURI(src)
@@ -75,20 +86,36 @@ export default function CurrLyricsContextProvider(props) {
         })
             .then(response => response.json())
             .then(data => {
+                let newLines = lines;
+
                 if (data?.trans) {
-                    let newLines = lines;
                     newLines[index] = { src: src, trans: data?.trans };
                     setLines(newLines);
                     setCou(cou+1)
+                }else{
+                    if(lines[index].trans === undefined){
+                        newLines[index] = { src: src, trans: 'טוען תרגום..' };
+                    }
+                    if(lines[index].trans === 'טוען תרגום..'){
+                        newLines[index] = { src: src, trans: "[missing]" };
+                    }
+           
+                    setLines(newLines);
+                    setCou(cou+1);
                 }
             }
             ).catch((e) => {
                 let newLines = lines;
                
-                newLines[index] = { src: src, trans: "[missing]" };
+                if(lines[index].trans === ''){
+                    newLines[index] = { src: src, trans: 'טוען תרגום..' };
+                }
+                if(lines[index].trans === 'טוען תרגום..'){
+                    newLines[index] = { src: src, trans: "[missing]" };
+                }
                 
                 setLines(newLines);
-                setCou(cou+1)
+                setCou(cou+1);
                 console.log(e);
             });
     }

@@ -24,7 +24,7 @@ import { NavLink } from 'react-router-dom';
 
 const Header = ({ className, ...props }) => {
   const drawerContext = useContext(DrawerContext);
-  const currLyricsContext = useContext(CurrLyricsContext);
+  const currLyricsContext = useContext(CurrLyricsContext)
 
   const handleOpenNavMenu = () => {
     drawerContext.openDrawer(true, 'left', 'temporary', SidePagesList);
