@@ -11,9 +11,9 @@ export default function CurrLyricsContextProvider(props) {
     const [lines, setLines] = useState([]);
     const [cou, setCou] = useState(0); // helps to force useEffect
 
-    const serverUri = 'https://musicline-backend-basssites.vercel.app';
+    // const serverUri = 'https://musicline-backend-basssites.vercel.app';
     
-    // const serverUri = 'http://localhost:5000';
+    const serverUri = 'http://localhost:5000';
 
     const getLines = (currSong) => {
         loadersContext.openLoader('main');
@@ -29,7 +29,7 @@ export default function CurrLyricsContextProvider(props) {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                "currSong": encodeURI(currSong)
+                "currSong": currSong
             })
         })
             .then(response => response.json())

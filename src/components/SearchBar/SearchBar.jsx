@@ -39,10 +39,10 @@ function SearchBar({ className }) {
             let songTitle = line.innerText.replace('Lyrics | Musixmatch', " ");
             line.innerText = songTitle;
             const currSong = {
-              artistName: songTitle.split('-')[0],
-              songtName: songTitle.split('-')[1]
+              artistName: encodeURI(songTitle.split('-')[0]),
+              songName: encodeURI(songTitle.split('-')[1])
             }
-
+            
             line.addEventListener('click', (e) => {
               currLyricsContext.getLines(currSong);
             });
