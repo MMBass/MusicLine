@@ -23,6 +23,10 @@ const StyledLyricsBody = styled(LyricsBody)`
     display: inline-block;
   }
 
+  .he-line small{
+    display: inline-block;
+  }
+
   .lyrics-line{
     padding: 6px 0px;
     max-width: 98%;

@@ -68,6 +68,7 @@ function SearchBar({ className }) {
         // clear gsc input
         let gsc_clear = document.querySelector('.gsst_a');
         if (gsc_clear) {
+          
           gsc_clear.dispatchEvent(new Event('click'));
         }
       } else {

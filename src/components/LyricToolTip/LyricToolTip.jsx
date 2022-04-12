@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 
 import {
-  Grid,
   Tooltip,
   Typography
 } from '@mui/material';
@@ -38,7 +37,7 @@ function LyricToolTip({ className, ...props }) {
         </>}
       arrow sx={{ color: 'white' }}
       enterDelay={0}
-      enterTouchDelay={5}
+      enterTouchDelay={200}
       leaveTouchDelay={60 * 1000}
       leaveDelay={0}
     >
