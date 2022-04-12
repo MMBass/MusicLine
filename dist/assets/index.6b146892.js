@@ -94,7 +94,7 @@ var Q=Object.defineProperty,X=Object.defineProperties;var Y=Object.getOwnPropert
   *,::before,::after{
       background-color: '#ffffff0';
   }
-`;function lt(r){var s=r,{className:e}=s,n=v(s,["className"]);l.exports.useEffect(()=>{o()},[]);const o=()=>{};return t(Ee,{className:e,title:x(A,{children:[t(E,{color:"inherit",children:" \u05EA\u05E8\u05D2\u05D5\u05DE\u05D9\u05DD \u05E0\u05D5\u05E1\u05E4\u05D9\u05DD:"}),t("div",{className:"tt-body",style:{textAlign:"center"},children:["","",""].map(()=>x(A,{children:[t("p",{className:"tt-p",children:"\u05EA\u05E8\u05D2\u05D5\u05DD"}),t("hr",{})]}))})]}),arrow:!0,sx:{color:"white"},enterDelay:0,enterTouchDelay:5,leaveTouchDelay:60*1e3,leaveDelay:0,children:t("p",{className:"single-lyric",children:n.lyric})})}const ut=m(lt)`
+`;function lt(r){var s=r,{className:e}=s,n=v(s,["className"]);l.exports.useEffect(()=>{o()},[]);const o=()=>{};return t(Ee,{className:e,title:x(A,{children:[t(E,{color:"inherit",children:" \u05EA\u05E8\u05D2\u05D5\u05DE\u05D9\u05DD \u05E0\u05D5\u05E1\u05E4\u05D9\u05DD:"}),t("div",{className:"tt-body",style:{textAlign:"center"},children:["","",""].map(()=>x(A,{children:[t("p",{className:"tt-p",children:"\u05EA\u05E8\u05D2\u05D5\u05DD"}),t("hr",{})]}))})]}),arrow:!0,sx:{color:"white"},enterDelay:0,enterTouchDelay:200,leaveTouchDelay:60*1e3,leaveDelay:0,children:t("p",{className:"single-lyric",children:n.lyric})})}const ut=m(lt)`
   
 `;function dt(r){var s=r,{className:e}=s,n=v(s,["className"]);const o=l.exports.useContext(w);return l.exports.useEffect(()=>{o.checkNextTrans()},[o,o.cou]),t(N,{children:t(M,{container:!0,spacing:2,children:o.lines&&t("div",{id:"lyrics_body",className:e,children:o.lines.map((a,c)=>{var i;return x("div",{children:[t(M,{className:"lyrics-line en-line",item:!0,children:a.src.split(" ").map((p,f)=>t(ut,{lyric:p},f))},c.toString()+Math.floor(Math.random()*3e4)),t(M,{item:!0,className:"lyrics-line he-line",children:t(A,{children:((i=a.trans)==null?void 0:i.length)>2?a.trans.split(" ").map((p,f)=>t("small",{onLoad:()=>{o.checkNextTrans()},className:"single-trans",children:p},f)):t("small",{className:"single-trans",children:"\u05D8\u05D5\u05E2\u05DF \u05EA\u05E8\u05D2\u05D5\u05DD..."})})},c.toString()+Math.floor(Math.random()*3e4))]})})})})})}const pt=m(dt)`
    /* max-width: 90%; */
@@ -115,6 +115,10 @@ var Q=Object.defineProperty,X=Object.defineProperties;var Y=Object.getOwnPropert
 
   .en-line p{
     margin: unset;
+    display: inline-block;
+  }
+
+  .he-line small{
     display: inline-block;
   }
 
