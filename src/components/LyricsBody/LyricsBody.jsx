@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useLayoutEffect} from "react";
+import React, { useContext, useEffect } from "react";
 
 import {
   Grid,
@@ -13,7 +13,6 @@ function LyricsBody({ className, ...props }) {
   const currLyricsContext = useContext(CurrLyricsContext);
 
   useEffect(() => {
-    // console.log(currLyricsContext.lines);
     currLyricsContext.checkNextTrans();
   }, [currLyricsContext,currLyricsContext.cou]);
 

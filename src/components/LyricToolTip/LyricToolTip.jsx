@@ -1,5 +1,4 @@
-import { useEffect, useState, useContext } from "react";
-import { LoadersContext } from '@context/LoadersContext';
+import { useEffect, useState, useMemo, useCallback } from "react";
 
 import {
   Tooltip,
@@ -18,30 +17,34 @@ function LyricToolTip({ className, ...props }) {
     // call here every word translation, or show loader and call and save just when using the tooltip 
   }
 
-  function callResults(){
+  const handleCallResults = useCallback(() => {
+    callResults();
+  }, [])
+
+  function callResults() {
     const serverUri = 'https://musicline-backend-basssites.vercel.app';
     // const serverUri = 'http://localhost:5000';
 
     fetch(`${serverUri}/single-trans`, {
       method: 'post',
       headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-          "single": encodeURI(props.lyric)
+        "single": encodeURI(props.lyric)
       })
-  })
+    })
       .then(response => response.json())
       .then(data => {
-          if (data?.results) {
-            setResults(data.results);
-          }else{
-            setResults(['no results']);
-          }
+        if (data?.results) {
+          setResults(data.results);
+        } else {
+          setResults(['no results']);
+        }
       }
       ).catch((e) => {
-          console.log(e);
+        console.log(e);
       });
   }
 
@@ -61,7 +64,7 @@ function LyricToolTip({ className, ...props }) {
                 </>)
               })
               :
-              <LinearProgress sx={{margin: '8px'}} color={"primary"} />
+              <LinearProgress sx={{ margin: '8px' }} color={"primary"} />
             }
           </div>
 
@@ -71,7 +74,7 @@ function LyricToolTip({ className, ...props }) {
       enterTouchDelay={5}
       leaveTouchDelay={60 * 1000}
       leaveDelay={0}
-      onOpen={()=>{callResults()}}
+      onOpen={() => { handleCallResults() }}
     >
       <p className="single-lyric">{props.lyric}</p>
     </Tooltip>
