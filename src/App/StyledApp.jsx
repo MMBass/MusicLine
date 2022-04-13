@@ -54,11 +54,11 @@ const StyledApp = styled(App)`
 
 
   .toolTip-title{
+    direction: rtl;
     text-align: center;
   }
 
   .tt-body *{
-    color: blue;
     text-align: center;
   }
 `;
