@@ -1,21 +1,14 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { LoadersContext } from '@context/LoadersContext';
 
 import {
   Tooltip,
-  Typography
+  Typography,
+  LinearProgress
 } from '@mui/material';
-import ClickAwayListener from '@mui/material/ClickAwayListener';
 
 function LyricToolTip({ className, ...props }) {
-  const [open, setOpen] = useState(false);
-
-  const handleTooltipOpen = () => {
-    setOpen(true);
-  };
-  
-  const handleTooltipClose = () => {
-    setOpen(false);
-  };
+  const [results, setResults] = useState([]);
 
   useEffect(() => {
     init();
@@ -25,45 +18,63 @@ function LyricToolTip({ className, ...props }) {
     // call here every word translation, or show loader and call and save just when using the tooltip 
   }
 
+  function callResults(){
+    // const serverUri = 'https://musicline-backend-basssites.vercel.app';
+    const serverUri = 'http://localhost:5000';
+
+    fetch(`${serverUri}/single-trans`, {
+      method: 'post',
+      headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+          "single": encodeURI(props.lyric)
+      })
+  })
+      .then(response => response.json())
+      .then(data => {
+          if (data?.results) {
+            setResults(data.results);
+          }else{
+            setResults(['no results']);
+          }
+      }
+      ).catch((e) => {
+          console.log(e);
+      });
+  }
 
   return (
-    <ClickAwayListener onClickAway={handleTooltipClose}>
-      <Tooltip
-        className={className}
+    <Tooltip
+      className={className}
 
-        title={
-          <>
-            <Typography color="inherit"> תרגומים נוספים:</Typography>
-            <div className="tt-body" style={{ textAlign: "center" }}>
-              {
-                ["", "", ""].map(() => {
-                  return (<>
-                    <p className="tt-p">{"תרגום"}</p>
-                    <hr></hr>
-                  </>)
-                })
-              }
-            </div>
+      title={
+        <>
+          <Typography color="inherit"> תרגומים נוספים:</Typography>
+          <div className="tt-body" style={{ textAlign: "center" }}>
+            {results[0] ?
+              results.map((r) => {
+                return (<>
+                  <p className="tt-p">{r}</p>
+                  <hr></hr>
+                </>)
+              })
+              :
+              <LinearProgress sx={{margin: '8px'}} color={"primary"} />
+            }
+          </div>
 
-          </>}
-        arrow sx={{ color: 'white' }}
-        enterDelay={0}
-        enterTouchDelay={200}
-        leaveTouchDelay={60 * 1000}
-        leaveDelay={0}
-
-        PopperProps={{
-          disablePortal: false,
-        }}
-        onClose={handleTooltipClose}
-        open={open}
-        disableFocusListener
-        disableTouchListener
-        // disableHoverListener
-      >
-        <p className="single-lyric" onClick={handleTooltipOpen}>{props.lyric}</p>
-      </Tooltip>
-    </ClickAwayListener>
+        </>}
+      arrow sx={{ color: 'white' }}
+      enterDelay={0}
+      enterTouchDelay={5}
+      leaveTouchDelay={60 * 1000}
+      leaveDelay={0}
+      onOpen={()=>{callResults()}}
+    >
+      <p className="single-lyric">{props.lyric}</p>
+    </Tooltip>
   );
 }
 

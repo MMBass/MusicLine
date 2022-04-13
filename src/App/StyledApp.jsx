@@ -61,6 +61,10 @@ const StyledApp = styled(App)`
   .tt-body *{
     text-align: center;
   }
+
+  .loader{
+      padding: 20px;
+  }
 `;
 
 export default StyledApp;
