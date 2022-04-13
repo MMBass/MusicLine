@@ -18,9 +18,6 @@ export default function CurrLyricsContextProvider(props) {
     const getLines = (currSong) => {
         loadersContext.openLoader('main');
 
-        // let cors = `https://cors-anywhere.herokuapp.com/`;
-        // let musixMatch = `http://api.musixmatch.com/ws/1.1/`;
-
         fetch(`${serverUri}/lyrics`, {
             method: 'post',
             // mode: "no-cors",

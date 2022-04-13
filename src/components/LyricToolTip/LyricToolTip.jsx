@@ -19,8 +19,8 @@ function LyricToolTip({ className, ...props }) {
   }
 
   function callResults(){
-    // const serverUri = 'https://musicline-backend-basssites.vercel.app';
-    const serverUri = 'http://localhost:5000';
+    const serverUri = 'https://musicline-backend-basssites.vercel.app';
+    // const serverUri = 'http://localhost:5000';
 
     fetch(`${serverUri}/single-trans`, {
       method: 'post',
