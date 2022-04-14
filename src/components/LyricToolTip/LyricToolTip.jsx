@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo, useCallback } from "react";
+import { useState, useCallback } from "react";
 
 import {
   Tooltip,
@@ -9,19 +9,12 @@ import {
 function LyricToolTip({ className, ...props }) {
   const [results, setResults] = useState([]);
 
-  useEffect(() => {
-    init();
-  }, []);
-
-  const init = () => {
-    // call here every word translation, or show loader and call and save just when using the tooltip 
-  }
-
   const handleCallResults = useCallback(() => {
     callResults();
   }, [])
 
   function callResults() {
+
     const serverUri = 'https://musicline-backend-basssites.vercel.app';
     // const serverUri = 'http://localhost:5000';
 
@@ -37,15 +30,33 @@ function LyricToolTip({ className, ...props }) {
     })
       .then(response => response.json())
       .then(data => {
-        if (data?.results) {
+        if (data?.results[0]) {
           setResults(data.results);
         } else {
-          setResults(['no results']);
+          setResults(['לא נמצא']);
         }
       }
       ).catch((e) => {
         console.log(e);
       });
+  }
+
+  const Results = () => {
+    if (results[1]) {
+      return (
+        results.map((r, i) => {
+          return (<>
+            {i > 0 && <hr></hr>}
+            <p className="tt-p">{r}</p>
+          </>)
+        })
+      )
+    } else {
+      return (
+        <p className="tt-p">לא נמצא</p>
+      )
+    }
+
   }
 
   return (
@@ -55,23 +66,18 @@ function LyricToolTip({ className, ...props }) {
       title={
         <>
           <Typography color="inherit"> תרגומים נוספים:</Typography>
-          <div className="tt-body" style={{ textAlign: "center" }}>
+          <div className="tt-body" style={{ textAlign: "center", maxHeight: '110px', overflowY: 'auto', direction: 'ltr' }}>
             {results[0] ?
-              results.map((r) => {
-                return (<>
-                  <p className="tt-p">{r}</p>
-                  <hr></hr>
-                </>)
-              })
+              <Results></Results>
               :
               <LinearProgress sx={{ margin: '8px' }} color={"primary"} />
             }
           </div>
 
         </>}
-      arrow sx={{ color: 'white' }}
+      arrow
       enterDelay={0}
-      enterTouchDelay={5}
+      enterTouchDelay={0}
       leaveTouchDelay={60 * 1000}
       leaveDelay={0}
       onOpen={() => { handleCallResults() }}

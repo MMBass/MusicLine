@@ -12,6 +12,30 @@ body {
   background: silver;
 }
 
+.MuiTooltip-popper ::-webkit-scrollbar {
+  width: 2px;
+}
+
+.MuiTooltip-popper hr{
+  margin-left: 8px;
+  margin-right: 8px;
+  border: unset;
+  border-top: 1.5px solid rgb(180, 180, 180);
+}
+
+.MuiTooltip-popper p{
+  margin-left: 8px;
+  margin-right: 8px;
+} 
+
+.MuiTooltip-popper p:first-of-type {
+  margin-bottom: 8px;
+}
+
+.MuiTooltip-popper p:last-of-type {
+  margin-bottom: 15px;
+}
+
 /* Search results style, dom elements out of REACT */
 #___gcse_0 {
   /* margin-top: 30px; */
