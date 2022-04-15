@@ -5,11 +5,13 @@ import {
   Typography,
   LinearProgress
 } from '@mui/material';
+import ClickAwayListener from '@mui/material/ClickAwayListener';
 
 import { CurrLyricsContext } from '@context/CurrLyricsContext';
 
 function LyricToolTip({ className, ...props }) {
   const currLyricsContext = useContext(CurrLyricsContext);
+  const [open, setOpen] = useState(false);
   const [ttDelay, setTtDelay] = useState(50000);
   const [results, setResults] = useState([]);
 
@@ -20,7 +22,18 @@ function LyricToolTip({ className, ...props }) {
     } // allows open only when lyricsContext finish render 
   }, [currLyricsContext.lines]);
 
+  
+  const handleTooltipOpen = () => {
+    setOpen(true);
+    handleCallResults()
+  };
+  
+  const handleTooltipClose = () => {
+    setOpen(false);
+  };
+
   const handleCallResults = useCallback(() => {
+    console.log('dd');
     callResults();
   }, [])
 
@@ -71,6 +84,7 @@ function LyricToolTip({ className, ...props }) {
   }
 
   return (
+    <ClickAwayListener onClickAway={handleTooltipClose}>
     <Tooltip
       className={className}
 
@@ -92,9 +106,19 @@ function LyricToolTip({ className, ...props }) {
       leaveTouchDelay={60 * 1000}
       leaveDelay={0}
       onOpen={() => { handleCallResults() }}
+
+      PopperProps={{
+        disablePortal: false,
+      }}
+      onClose={handleTooltipClose}
+      open={open}
+      disableFocusListener
+      disableTouchListener
+      disableHoverListener
     >
-      <p className="single-lyric">{props.lyric}</p>
+      <p className="single-lyric" onClick={handleTooltipOpen}>{props.lyric}</p>
     </Tooltip>
+   </ClickAwayListener>
   );
 }
 
