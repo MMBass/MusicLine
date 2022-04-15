@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect, useContext } from "react";
 
 import {
   Tooltip,
@@ -6,8 +6,19 @@ import {
   LinearProgress
 } from '@mui/material';
 
+import { CurrLyricsContext } from '@context/CurrLyricsContext';
+
 function LyricToolTip({ className, ...props }) {
+  const currLyricsContext = useContext(CurrLyricsContext);
+  const [ttDelay, setTtDelay] = useState(50000);
   const [results, setResults] = useState([]);
+
+  useEffect(() => {
+    let lastTrans = currLyricsContext.lines[currLyricsContext.lines.length-1]?.trans;
+    if(lastTrans.length >= 1){
+      setTtDelay(0);
+    } // allows open only when lyricsContext finish render 
+  }, [currLyricsContext.lines]);
 
   const handleCallResults = useCallback(() => {
     callResults();
@@ -76,8 +87,8 @@ function LyricToolTip({ className, ...props }) {
 
         </>}
       arrow
-      enterDelay={0}
-      enterTouchDelay={0}
+      enterDelay={ttDelay}
+      enterTouchDelay={ttDelay}
       leaveTouchDelay={60 * 1000}
       leaveDelay={0}
       onOpen={() => { handleCallResults() }}
