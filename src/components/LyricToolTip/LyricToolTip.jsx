@@ -33,7 +33,6 @@ function LyricToolTip({ className, ...props }) {
   };
 
   const handleCallResults = useCallback(() => {
-    console.log('dd');
     callResults();
   }, [])
 

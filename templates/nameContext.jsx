@@ -16,4 +16,4 @@ export default function NameContextProvider(props) {
             {props.children}
         </NameContext.Provider>
     );
-}; //todo Important Add the ContextProvider to Composer
+}; //todo Important Add every ContextProvider to Composer

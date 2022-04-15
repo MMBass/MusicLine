@@ -4,7 +4,7 @@ export const SettingsContext = React.createContext(undefined);
 
 export default function SettingsContextProvider(props) {
     const [settings, setSettings] = useState({
-        fontSize: { sm: localStorage.getItem('font_sm') || 15, md: localStorage.getItem('font_md') || 25 }
+        fontSize: { sm: Number(localStorage.getItem('font_sm')) || 15, md: Number(localStorage.getItem('font_md')) || 25 }
     });
 
     const increaseFontSize = () => {
