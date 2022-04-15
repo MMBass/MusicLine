@@ -6,13 +6,13 @@ export const CurrLyricsContext = React.createContext(undefined);
 export default function CurrLyricsContextProvider(props) {
     const loadersContext = useContext(LoadersContext);
 
-    const [currLyrics, setCurrLyrics] = useState(false);
+    const [currLyrics, setCurrLyrics] = useState(sessionStorage.getItem('currLines') || false);
     const [singles, setSingles] = useState([]);
-    const [lines, setLines] = useState([]);
+    const [lines, setLines] = useState(JSON.parse(sessionStorage.getItem('currLines')) || []);
     const [cou, setCou] = useState(0); // helps to force useEffect
 
     const serverUri = 'https://musicline-backend-basssites.vercel.app';
-    
+
     // const serverUri = 'http://localhost:5000';
 
     const getLines = (currSong) => {
@@ -58,9 +58,9 @@ export default function CurrLyricsContextProvider(props) {
         let count = false;
         for (let index = 0; index < lines.length; index++) {
             let line = lines[index];
-            if(count === true){
+            if (count === true) {
                 break;
-            }else if (line.trans.length <= 1 || line.trans === 'טוען תרגום..') {
+            } else if (line.trans.length <= 1 || line.trans === 'טוען תרגום..') {
                 count = true;
                 getLinesTrans(line.src, index);
                 break;
@@ -88,31 +88,51 @@ export default function CurrLyricsContextProvider(props) {
                 if (data?.trans) {
                     newLines[index] = { src: src, trans: data?.trans };
                     setLines(newLines);
-                    setCou(cou+1)
-                }else{
-                    if(lines[index].trans === undefined){
+
+                    let lastTrans = lines[lines.length - 1]?.trans;
+                                    
+                    if (lastTrans.length >= 1) {
+                        sessionStorage.setItem('currLines',JSON.stringify(lines));
+                    }
+
+                    setCou(cou + 1)
+                } else {
+                    if (lines[index].trans === undefined) {
                         newLines[index] = { src: src, trans: 'טוען תרגום..' };
                     }
-                    if(lines[index].trans === 'טוען תרגום..'){
+                    if (lines[index].trans === 'טוען תרגום..') {
                         newLines[index] = { src: src, trans: "[missing]" };
                     }
-           
+
                     setLines(newLines);
-                    setCou(cou+1);
+
+                    let lastTrans = lines[lines.length - 1]?.trans;
+                                    
+                    if (lastTrans.length >= 1) {
+                        sessionStorage.setItem('currLines',JSON.stringify(lines));
+                    }
+
+                    setCou(cou + 1);
                 }
             }
             ).catch((e) => {
                 let newLines = lines;
-               
-                if(lines[index].trans === ''){
+
+                if (lines[index].trans === '') {
                     newLines[index] = { src: src, trans: 'טוען תרגום..' };
                 }
-                if(lines[index].trans === 'טוען תרגום..'){
+                if (lines[index].trans === 'טוען תרגום..') {
                     newLines[index] = { src: src, trans: "[missing]" };
                 }
-                
+
                 setLines(newLines);
-                setCou(cou+1);
+
+                let lastTrans = lines[lines.length - 1]?.trans;
+                if (lastTrans.length >= 1) {
+                    sessionStorage.setItem('currLines',JSON.stringify(lines));
+                }
+
+                setCou(cou + 1);
                 console.log(e);
             });
     }

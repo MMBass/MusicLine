@@ -14,8 +14,8 @@ function LyricToolTip({ className, ...props }) {
   const [results, setResults] = useState([]);
 
   useEffect(() => {
-    let lastTrans = currLyricsContext.lines[currLyricsContext.lines.length-1]?.trans;
-    if(lastTrans.length >= 1){
+    let lastTrans = currLyricsContext.lines[currLyricsContext.lines.length - 1]?.trans;
+    if (lastTrans.length >= 1) {
       setTtDelay(0);
     } // allows open only when lyricsContext finish render 
   }, [currLyricsContext.lines]);

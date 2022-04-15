@@ -8,7 +8,7 @@ import { CurrLyricsContext } from '@context/CurrLyricsContext';
 function NavBar({ className }) {
   const currLyricsContext = useContext(CurrLyricsContext);
 
-  const pages = [{ name: 'היסטוריה', url: '/history' }];
+  const pages = [];
 
   return (
     <Box className={className} sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>

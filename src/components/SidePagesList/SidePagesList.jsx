@@ -8,7 +8,7 @@ import {
   ListItemText
 } from '@mui/material';
 
-const pages = [{ name: 'היסטוריה', url: '/history' }];
+const pages = [];
 
 function SidePagesList() {
   return (
