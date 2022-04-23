@@ -9,14 +9,14 @@ export default function SettingsContextProvider(props) {
 
     const increaseFontSize = () => {
         if (settings.fontSize.md < 60) {
-            setSettings({ ...settings, fontSize: { sm: settings.fontSize.sm + 0.5, md: settings.fontSize.md + 0.5 } });
+            setSettings({ ...settings, fontSize: { sm: settings.fontSize.sm + 1, md: settings.fontSize.md + 1 } });
             updateLs();
         }
     }
 
     const reduceFontSize = () => {
         if (settings.fontSize.sm > 2) {
-            setSettings({ ...settings, fontSize: { sm: settings.fontSize.sm - 0.5, md: settings.fontSize.md - 0.5 } });
+            setSettings({ ...settings, fontSize: { sm: settings.fontSize.sm - 1, md: settings.fontSize.md - 1 } });
             updateLs();
         }
     }

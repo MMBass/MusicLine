@@ -78,21 +78,29 @@ export default function CurrLyricsContextProvider(props) {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                "line": encodeURI(src)
+                "lines": lines
             })
         })
             .then(response => response.json())
             .then(data => {
                 let newLines = lines;
 
-                if (data?.trans) {
+                if (data?.trans.length) {
+                    data.trans.map((li,index) => {
+                        newLines[index] = { src: newLines[index].src, trans: li};
+                    })
+ 
+                    setLines(newLines)
+                    setCou(cou + 1)
+
+                } else if (data?.trans) {
                     newLines[index] = { src: src, trans: data?.trans };
                     setLines(newLines);
 
                     let lastTrans = lines[lines.length - 1]?.trans;
-                                    
+
                     if (lastTrans.length >= 1) {
-                        sessionStorage.setItem('currLines',JSON.stringify(lines));
+                        sessionStorage.setItem('currLines', JSON.stringify(lines));
                     }
 
                     setCou(cou + 1)
@@ -107,9 +115,9 @@ export default function CurrLyricsContextProvider(props) {
                     setLines(newLines);
 
                     let lastTrans = lines[lines.length - 1]?.trans;
-                                    
+
                     if (lastTrans.length >= 1) {
-                        sessionStorage.setItem('currLines',JSON.stringify(lines));
+                        sessionStorage.setItem('currLines', JSON.stringify(lines));
                     }
 
                     setCou(cou + 1);
@@ -129,7 +137,7 @@ export default function CurrLyricsContextProvider(props) {
 
                 let lastTrans = lines[lines.length - 1]?.trans;
                 if (lastTrans.length >= 1) {
-                    sessionStorage.setItem('currLines',JSON.stringify(lines));
+                    sessionStorage.setItem('currLines', JSON.stringify(lines));
                 }
 
                 setCou(cou + 1);

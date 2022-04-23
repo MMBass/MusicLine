@@ -24,8 +24,12 @@ function LyricToolTip({ className, ...props }) {
 
   
   const handleTooltipOpen = () => {
-    setOpen(true);
-    handleCallResults()
+    let lastTrans = currLyricsContext.lines[currLyricsContext.lines.length - 1]?.trans;
+    if (lastTrans.length >= 1) {
+      setOpen(true);
+      handleCallResults()
+    } // allows open only when lyricsContext finish render 
+
   };
   
   const handleTooltipClose = () => {
