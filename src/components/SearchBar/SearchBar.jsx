@@ -68,7 +68,6 @@ function SearchBar({ className }) {
         // clear gsc input
         let gsc_clear = document.querySelector('.gsst_a');
         if (gsc_clear) {
-          
           gsc_clear.dispatchEvent(new Event('click'));
         }
       } else {
@@ -79,7 +78,7 @@ function SearchBar({ className }) {
 
           setTimeout(() => {
             gsc_btn.dispatchEvent(new Event('click'));
-          }, 100 * Math.floor(Math.random() * 4));
+          }, 50 * Math.floor(Math.random() * 4));
 
         } else {
           console.error("no gsc loaded, try reload the page");
