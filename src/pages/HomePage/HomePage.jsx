@@ -41,8 +41,12 @@ function HomePage({ className }) {
             שורה בשורה
           </Typography>
           <Typography variant="h3" className="page-h3">
-            לימוד אנגלית באמצעות מוזיקה
-          </Typography>
+          שירים באנגלית מתורגמים לעברית
+          <br></br>
+          <small>
+          לחיצה על מילה תציג תרגומים נוספים   
+          </small>
+       </Typography>
         </div>
       }
 

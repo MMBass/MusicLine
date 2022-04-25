@@ -32,10 +32,10 @@ export default function CurrLyricsContextProvider(props) {
             .then(response => response.json())
             .then(data => {
                 loadersContext.closeLoader('main');
-
-                if (data?.message?.body?.lyrics?.lyrics_body) {
-                    let ly = data.message.body.lyrics.lyrics_body;
-                    ly = ly.substring(0, ly.indexOf("..."));
+            
+                if (data?.lyrics) {
+                    let ly = data.lyrics;
+                    // ly = ly.substring(0, ly.indexOf("..."));
 
                     let newLines = [];
                     ly.split(/(?:\r\n|\r|\n)/g).map((line) => { // TODO split also by commas?

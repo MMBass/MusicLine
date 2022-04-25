@@ -10,7 +10,7 @@ const StyledChangeSize = styled(ChangeSize)`
   }
 
   button{
-    background-color: #eeededb0;
+    background-color: #eeeded94;
     color: #5b91ff;
     padding: unset;
   }
@@ -19,7 +19,7 @@ const StyledChangeSize = styled(ChangeSize)`
     color: white !important;
     font-size: 12px;
     padding: 0 10px;
-    background: #ffffff6b;
+    background: #ffffff47;
   }
 
 `;

@@ -24,7 +24,7 @@ function ChangeSize({className}) {
             >
               <RemoveIcon fontSize="small" />
             </Button>
-            <Button className='font-size-disabled' disabled>גודל טקסט</Button>
+            <Button className='font-size-disabled' disabled>גודל הטקסט</Button>
             <Button
               aria-label="increase"
               onClick={() => {

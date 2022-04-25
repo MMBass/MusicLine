@@ -2,11 +2,11 @@ import { styled } from '@mui/material/styles';
 import LyricsBody from './LyricsBody';
 
 const StyledLyricsBody = styled(LyricsBody)`
-   /* max-width: 90%; */
   font-family: 'Assistant','Roboto', 'sans-serif';
   /* text-align: center; */
+  /* padding: 10px; */
+  /* max-width: 90%; */
   font-size: 20px;
-  padding: 10px;
   padding-inline-start: 50px;
   margin-top: 50px;
 

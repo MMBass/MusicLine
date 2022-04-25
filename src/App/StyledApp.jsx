@@ -27,11 +27,20 @@ const StyledApp = styled(App)`
 
   .page-h3{
     margin: 15px 0px 0px  0px;
-    font-size: 40px; // 29
+    font-size: 38px; // 29
     font-weight: 500;
     color: ${props => props.theme.palette.secondary.main};
+
+    small{
+      letter-spacing: 1.4px;
+    }
+
     @media (max-width: 600px) {
       font-size: 22px;
+
+      small{
+      letter-spacing: 0.7px;
+    }
     }
   }
 
