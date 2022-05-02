@@ -1,6 +1,6 @@
 <!-- markdownlint-disable-next-line -->
 
-<h1 align="center">MusicLine - </h1>
+<h1 align="center">MusicLine </h1>
 
 <div align="center">
 
