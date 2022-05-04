@@ -10,12 +10,14 @@ export default function CurrLyricsContextProvider(props) {
     const [singles, setSingles] = useState([]);
     const [lines, setLines] = useState(JSON.parse(sessionStorage.getItem('currLines')) || []);
     const [cou, setCou] = useState(0); // helps to force useEffect
+    const [proccess, setProccess] = useState(false); // helps to block double-click
 
-    // const serverUri = 'https://musicline-backend-basssites.vercel.app';
+    const serverUri = 'https://musicline-backend-basssites.vercel.app';
 
-    const serverUri = 'http://localhost:5000';
+    // const serverUri = 'http://localhost:5000';
 
     const getLines = (currSong) => {
+        setProccess(true);
         loadersContext.openLoader('main');
 
         fetch(`${serverUri}/lyrics`, {
@@ -49,9 +51,13 @@ export default function CurrLyricsContextProvider(props) {
                     if (gsc_clear) {
                         gsc_clear.dispatchEvent(new Event('click'));
                     }
+                    setProccess(true);
                 }
             }
-            );
+            ).catch((e)=>{
+                loadersContext.closeLoader('main');
+                setProccess(true);
+            });
     }
 
     const checkNextTrans = () => {
@@ -148,7 +154,7 @@ export default function CurrLyricsContextProvider(props) {
     const actions = { getLines, getLinesTrans, checkNextTrans };
 
     return (
-        <CurrLyricsContext.Provider value={{ currLyrics, singles, lines, cou, ...actions }}>
+        <CurrLyricsContext.Provider value={{ proccess, currLyrics, singles, lines, cou, ...actions }}>
             {props.children}
         </CurrLyricsContext.Provider>
     );

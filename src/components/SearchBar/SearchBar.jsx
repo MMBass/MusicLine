@@ -32,6 +32,11 @@ function SearchBar({ className }) {
     setTimeout(() => {
       let lines = document.querySelectorAll(".gs-title");
 
+      const gscAdBlocks = document.querySelectorAll('.gsc-adBlock');
+      gscAdBlocks.forEach((ad)=>{
+        ad.parentNode.appendChild(ad);
+      });
+
       if (lines) {
         lines.forEach((line, i) => {
           if (line.innerText.includes("Lyrics")) {
@@ -42,9 +47,11 @@ function SearchBar({ className }) {
               artistName: encodeURI(songTitle.split('-')[0]),
               songName: encodeURI(songTitle.split('-')[1])
             }
-            
+           
             line.addEventListener('click', (e) => {
-              currLyricsContext.getLines(currSong);
+              if (!currLyricsContext.proccess) {
+                currLyricsContext.getLines(currSong);
+              }
             });
 
           } else if (!line.innerText.includes("Lyrics")) {
@@ -81,7 +88,7 @@ function SearchBar({ className }) {
           }, 50 * Math.floor(Math.random() * 4));
 
         } else {
-          console.error("no gsc loaded, try reload the page");
+          console.error("no gsc loaded, try reload the page"); // todo dispay  banner
         }
       }
     } else {

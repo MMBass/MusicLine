@@ -132,9 +132,12 @@ body {
   display: none;
 }
 
-.gsc-adBlock,
 .gsc-above-wrapper-area {
   display: none !important;
+}
+
+.gsc-adBlock {
+  
 }
 
 /* END Search results style, dom elements out of REACT */
