@@ -8,11 +8,12 @@ export default function BannersContextProvider(props) {
         snackbar: { open: false, severity: "success", title: "", message: "This is a Snackbar!" },
     });
 
-    const createBanner = (name, severity, title, mesaage) => {
+    const createBanner = (name, severity, title, message) => {
+        console.log(message);
         if (banners[name]) {
             setBanners({ ...banners, [name]: undefined });
         }
-        setBanners({ ...banners, [name]: { open: false, severity: severity || "success", title: title || "", mesaage: mesaage || "" } });
+        setBanners({ ...banners, [name]: { open: true, severity: severity || "success", title: title || "", message: message || "" } });
     }
 
     const openBanner = (name) => {

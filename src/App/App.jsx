@@ -89,6 +89,12 @@ function App({ className }) {
             </Alert>
             // use in specific components, or remove
           }
+          {(bannersContext.error?.open) &&
+            <Alert severity="error" className='error-alert' onClose={() => { bannersContext.closeBanner('error') }}>
+              <AlertTitle>{bannersContext.error?.title}</AlertTitle>
+              {bannersContext.error?.message}
+            </Alert>
+          }
           <Layout>
             <Routes>
               <Route path={"/"} element={<HomePage className={'page'} />} />

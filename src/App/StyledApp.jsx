@@ -61,7 +61,6 @@ const StyledApp = styled(App)`
     border-radius: unset;
   }
 
-
   /* .toolTip-title{
     direction: rtl;
     text-align: center;

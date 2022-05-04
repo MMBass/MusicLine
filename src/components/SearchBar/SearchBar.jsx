@@ -3,9 +3,11 @@ import { useEffect, useContext } from "react";
 import { TextField } from "@mui/material";
 
 import { CurrLyricsContext } from '@context/CurrLyricsContext';
+import { BannersContext } from '@context/BannersContext';
 
 function SearchBar({ className }) {
   const currLyricsContext = useContext(CurrLyricsContext);
+  const bannersContext = useContext(BannersContext);
 
   useEffect(() => {
     window.onload = () => {
@@ -70,6 +72,7 @@ function SearchBar({ className }) {
 
   function HandleSearch(event) {
     let gsc_input = document.querySelector('#gsc-i-id1');
+
     if (gsc_input) {
       if (event.target.value.length <= 1) {
         // clear gsc input
@@ -88,10 +91,12 @@ function SearchBar({ className }) {
           }, 50 * Math.floor(Math.random() * 4));
 
         } else {
-          console.error("no gsc loaded, try reload the page"); // todo dispay  banner
+          bannersContext.createBanner('error', 'error', 'משהו השתבש, נסה לרענן את העמוד', '(no gsc loaded)');
+          console.error("no gsc loaded, try reload the page");
         }
       }
     } else {
+      bannersContext.createBanner('error', 'error', 'משהו השתבש, נסה לרענן את העמוד', '(no gsc loaded)');
       console.error("no gsc loaded, try reload the page");
     }
   }
