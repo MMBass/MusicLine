@@ -15,6 +15,12 @@ function HomePage({ className }) {
     
   }, [settingsContext]);
 
+
+  function HandleSubmit(e) {
+    e.preventDefault();
+
+  }
+
   return (
 
     <div className={className}>
@@ -40,6 +46,7 @@ function HomePage({ className }) {
         component="form"
         noValidate
         autoComplete="off"
+        onSubmit={HandleSubmit}
       >
         <SearchBar></SearchBar>
       </Box>
