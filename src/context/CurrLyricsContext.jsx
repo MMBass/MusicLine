@@ -12,9 +12,9 @@ export default function CurrLyricsContextProvider(props) {
     const [cou, setCou] = useState(0); // helps to force useEffect
     const [proccess, setProccess] = useState(false); // helps to block double-click
 
-    const serverUri = 'https://musicline-backend-basssites.vercel.app';
+    // const serverUri = 'https://musicline-backend-basssites.vercel.app';
 
-    // const serverUri = 'http://localhost:5000';
+    const serverUri = 'http://localhost:5000';
 
     const getLines = (currSong) => {
         setProccess(true);
@@ -34,7 +34,8 @@ export default function CurrLyricsContextProvider(props) {
             .then(response => response.json())
             .then(data => {
                 loadersContext.closeLoader('main');
-            
+                sessionStorage.removeItem('currLines')
+
                 if (data?.lyrics) {
                     let ly = data.lyrics;
                     // ly = ly.substring(0, ly.indexOf("..."));
@@ -54,7 +55,7 @@ export default function CurrLyricsContextProvider(props) {
                     setProccess(true);
                 }
             }
-            ).catch((e)=>{
+            ).catch((e) => {
                 loadersContext.closeLoader('main');
                 setProccess(true);
             });
@@ -92,11 +93,13 @@ export default function CurrLyricsContextProvider(props) {
                 let newLines = lines;
 
                 if (data?.trans.length) {
-                    data.trans.map((li,index) => {
-                        newLines[index] = { src: newLines[index].src, trans: li};
+                    data.trans.map((li, index) => {
+                        newLines[index] = { src: newLines[index].src, trans: li };
                     })
- 
-                    setLines(newLines)
+
+                    setLines(newLines);
+                    sessionStorage.setItem('currLines', JSON.stringify(lines));
+
                     setCou(cou + 1)
 
                 } else if (data?.trans) {
@@ -142,6 +145,7 @@ export default function CurrLyricsContextProvider(props) {
                 setLines(newLines);
 
                 let lastTrans = lines[lines.length - 1]?.trans;
+
                 if (lastTrans.length >= 1) {
                     sessionStorage.setItem('currLines', JSON.stringify(lines));
                 }
