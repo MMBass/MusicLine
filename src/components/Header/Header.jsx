@@ -16,6 +16,7 @@ import {
 
 import { default as SidePagesList } from '../SidePagesList/StyledSidePagesList';
 import { default as NavBar } from '@components/NavBar/StyledNavBar';
+import { default as ChangeColors } from '@components/ChangeColors/StyledChangeColors';
 
 import { DrawerContext } from '@context/DrawerContext';
 import { CurrLyricsContext } from '@context/CurrLyricsContext';
@@ -31,22 +32,9 @@ const Header = ({ className, ...props }) => {
   };
 
   return (
-    <AppBar position="static" className={className}>
+    <AppBar position="sticky" className={className}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-
-          <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton>
-          </Box>
 
           <NavLink to={'/'} >
             <Typography
@@ -61,8 +49,12 @@ const Header = ({ className, ...props }) => {
 
           {currLyricsContext.lines[0] && <ChangeSize></ChangeSize>} 
 
-          <NavBar className="nav-bar"></NavBar>
+          <Box sx={{ display: { xs: 'flex', md: 'flex' }, flexGrow: 1 }}>
+            <ChangeColors onClick={handleOpenNavMenu}></ChangeColors>
+          </Box>
 
+          {/* <NavBar className="nav-bar"></NavBar> */}
+          
         </Toolbar>
       </Container>
     </AppBar>

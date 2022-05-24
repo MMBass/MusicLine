@@ -60,24 +60,12 @@ function App({ className }) {
 
   }, []);
 
-  const handleScroll = () => {
-    if (appElement.current) {
-      if (window.pageYOffset > appElement.current.offsetTop) {
-        // Change the style without re-render
-        // appElement.current.style.position = "fixed";
-        // appElement.current.style.top = "0";
-      } else {
-        // appElement.current.style = '';
-      }
-    }
-  }
-
   const handleCloseSnackbar = (name) => {
     bannersContext.closeBanner(name);
   }
 
   return (
-    <div className={className} ref={appElement}>
+    <div className={className}>
       <CacheProvider value={cacheRtl}>
         <Router>
           <HeadTags></HeadTags>
@@ -87,7 +75,6 @@ function App({ className }) {
               <AlertTitle>{bannersContext.main.title}</AlertTitle>
               {bannersContext.main.message}
             </Alert>
-            // use in specific components, or remove
           }
           {(bannersContext.error?.open) &&
             <Alert severity="error" className='error-alert' onClose={() => { bannersContext.closeBanner('error') }}>

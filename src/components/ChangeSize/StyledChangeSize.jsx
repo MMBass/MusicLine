@@ -2,9 +2,11 @@ import { styled } from '@mui/material/styles';
 import ChangeSize from './ChangeSize';
 
 const StyledChangeSize = styled(ChangeSize)`
-  text-align: center;
+  text-align: end;
+  margin-inline-end: 25px;
   height: 30px;
- flex-grow: 2;
+  flex-grow: 2;
+
   .MuiButtonGroup-root{
     height: 30px;
   }

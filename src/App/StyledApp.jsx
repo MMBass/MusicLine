@@ -53,6 +53,7 @@ const StyledApp = styled(App)`
     position: fixed;
     top: 0;
     left: 0;
+    z-index: 3000;
   }
 
   .main-alert{
