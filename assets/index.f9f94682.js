@@ -130,7 +130,7 @@ var X=Object.defineProperty,Y=Object.defineProperties;var Z=Object.getOwnPropert
   .single-lyric, .single-trans{
     display: inline;
     min-width:unset;
-    padding: 0px 5px;
+    padding: 0px 2px;
     text-transform: none;
   }
 

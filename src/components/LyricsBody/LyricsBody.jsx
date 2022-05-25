@@ -44,7 +44,7 @@ function LyricsBody({ className, ...props }) {
                           line.trans.split(' ').map((word, i) => {
                             if(line.trans === '   ') return;
                             return (
-                              <small onLoad={() => { currLyricsContext.checkNextTrans() }} className="single-trans" key={i}>{word}</small>
+                              <small onLoad={() => { currLyricsContext.checkNextTrans() }} className="single-trans" key={i}>{word} &nbsp;</small>
                             )
                           })
                           :

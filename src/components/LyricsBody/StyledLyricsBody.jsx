@@ -41,7 +41,7 @@ const StyledLyricsBody = styled(LyricsBody)`
   .single-lyric, .single-trans{
     display: inline;
     min-width:unset;
-    padding: 0px 5px;
+    padding: 0px 2px;
     text-transform: none;
   }
 
@@ -50,12 +50,11 @@ const StyledLyricsBody = styled(LyricsBody)`
   }
 
   .he-line{
-      /* font-size: 14px; */
       font-size: ${props => (props.fontSize.md - 5) + 'px'};
   }
 
   .en-line{
-      /* font-size: 20px; */
+      margin-top: 8px;
       direction: rtl;
       text-align: left;
       font-size: ${props => props.fontSize.md + 'px'};
