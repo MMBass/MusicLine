@@ -2,10 +2,18 @@ import { styled } from '@mui/material/styles';
 import HomePage from './HomePage';
 
 const StyledHomePage = styled(HomePage)`
+    .home-top{
+       padding: 0 35px;
 
+       @media (max-width: 600px) {
+        padding: 0 25px;
+        }
+    }
+    
     .MuiTextField-root { 
         margin-top: 35px;
-        width: 460px;
+        /* margin-inline-start: 10px; */
+        width: 480px;
         border-color: white;
 
         @media (max-width: 600px) {

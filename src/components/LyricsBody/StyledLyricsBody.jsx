@@ -3,15 +3,21 @@ import LyricsBody from './LyricsBody';
 
 const StyledLyricsBody = styled(LyricsBody)`
   font-family: 'Assistant','Roboto', 'sans-serif';
-  /* text-align: center; */
-  /* padding: 10px; */
   /* max-width: 90%; */
   font-size: 20px;
+  margin: 25px;
+  margin-inline-end: 10px;
+  padding: 15px 50px;
   padding-inline-start: 50px;
-  margin-top: 50px;
+  margin-top: 55px;
+
+  background-color: #EBECF0;
+  color: #172B4D;
+  border-radius: 10px;
 
   @media (max-width: 600px) {
     padding-inline-start: 15px;
+    padding-inline-end: 15px;
   }
 
   .en-line{

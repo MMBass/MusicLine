@@ -31,12 +31,16 @@ const Header = ({ className, ...props }) => {
     drawerContext.openDrawer(true, 'left', 'temporary', SidePagesList);
   };
 
+  const removeLsLines = function(){
+    sessionStorage.removeItem('currLines');
+  }
+
   return (
     <AppBar position="sticky" className={className}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
 
-          <NavLink to={'/'} >
+          <NavLink to={'/'} onClick={removeLsLines()}>
             <Typography
               variant="h6"
               noWrap

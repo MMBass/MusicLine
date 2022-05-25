@@ -5,6 +5,7 @@ import rtlPlugin from 'stylis-plugin-rtl';
 import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
 import { prefixer } from 'stylis';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 import { DrawerContext } from '@context/DrawerContext';
 import { LoadersContext } from '@context/LoadersContext';
@@ -21,7 +22,6 @@ import { default as HiddenGetLyricsForm } from '@components/HiddenGetLyricsForm/
 import { LinearProgress, CircularProgress, Snackbar, Alert, AlertTitle } from '@mui/material';
 
 import { default as HomePage } from '@pages/HomePage/StyledHomePage';
-import { default as AboutPage } from '@pages/AboutPage/StyledAboutPage';
 import { default as NoMatchPage } from '@pages/NoMatchPage/StyledNoMatchPage';
 
 
@@ -64,60 +64,67 @@ function App({ className }) {
     bannersContext.closeBanner(name);
   }
 
+  const darkTheme = createTheme({
+    palette: {
+      mode: 'dark',
+    },
+  });
+
   return (
     <div className={className}>
-      <CacheProvider value={cacheRtl}>
-        <Router>
-          <HeadTags></HeadTags>
-          <Header className="header"></Header>
-          {(bannersContext.main.open) &&
-            <Alert severity="warning" className='main-alert'>
-              <AlertTitle>{bannersContext.main.title}</AlertTitle>
-              {bannersContext.main.message}
-            </Alert>
-          }
-          {(bannersContext.error?.open) &&
-            <Alert severity="error" className='error-alert' onClose={() => { bannersContext.closeBanner('error') }}>
-              <AlertTitle>{bannersContext.error?.title}</AlertTitle>
-              {bannersContext.error?.message}
-            </Alert>
-          }
-          <Layout>
-            <Routes>
-              <Route path={"/"} element={<HomePage className={'page'} />} />
-              <Route path={"/about"} element={<AboutPage className={'page'} />} />
-              <Route path="*" element={<NoMatchPage className={'page'} />} />
-            </Routes>
-          </Layout>
-
-          {/*dynamic global elements*/}
-          {(drawerContext.open && drawerContext.child) &&
-            <Drawer className="drawer"></Drawer>
-          }
-          {(loadersContext.main.open) &&
-            <LinearProgress color={loadersContext.main.color || "primary"} />
-          }
-          {(loadersContext.circular.open) &&
-            <CircularProgress color={loadersContext.main.color || "primary"} />
-            // use in specific component, or remove
-          }
-          {(bannersContext.snackbar.open) &&
-            <Snackbar open={bannersContext.snackbar.open} autoHideDuration={6000} onClose={() => { }}>
-              <Alert onClose={() => { handleCloseSnackbar('snackbar') }} severity={bannersContext.snackbar.severity} sx={{ width: '100%' }}>
-                {bannersContext.snackbar.message}
+      {/* <ThemeProvider theme={darkTheme}> */}
+        <CacheProvider value={cacheRtl}>
+          <Router>
+            <HeadTags></HeadTags>
+            <Header className="header"></Header>
+            {(bannersContext.main.open) &&
+              <Alert severity="warning" className='main-alert'>
+                <AlertTitle>{bannersContext.main.title}</AlertTitle>
+                {bannersContext.main.message}
               </Alert>
-            </Snackbar>
-          }
-          {/* <Dialog></Dialog> */}
-          {/* <Modal> */}
-          {/* Modal must have a children */}
-          {/* </Modal> */}
-          {/*end dynamic global elements*/}
+            }
+            {(bannersContext.error?.open) &&
+              <Alert severity="error" className='error-alert' onClose={() => { bannersContext.closeBanner('error') }}>
+                <AlertTitle>{bannersContext.error?.title}</AlertTitle>
+                {bannersContext.error?.message}
+              </Alert>
+            }
+            <Layout>
+              <Routes>
+                <Route path={"/"} element={<HomePage className={'page'} />} />
+                <Route path="*" element={<NoMatchPage className={'page'} />} />
+              </Routes>
+            </Layout>
 
-          {/* <Footer></Footer> */}
-        </Router>
-      </CacheProvider>
-      <HiddenGetLyricsForm></HiddenGetLyricsForm>
+            {/*dynamic global elements*/}
+            {(drawerContext.open && drawerContext.child) &&
+              <Drawer className="drawer"></Drawer>
+            }
+            {(loadersContext.main.open) &&
+              <LinearProgress color={loadersContext.main.color || "primary"} />
+            }
+            {(loadersContext.circular.open) &&
+              <CircularProgress color={loadersContext.main.color || "primary"} />
+              // use in specific component, or remove
+            }
+            {(bannersContext.snackbar.open) &&
+              <Snackbar open={bannersContext.snackbar.open} autoHideDuration={6000} onClose={() => { }}>
+                <Alert onClose={() => { handleCloseSnackbar('snackbar') }} severity={bannersContext.snackbar.severity} sx={{ width: '100%' }}>
+                  {bannersContext.snackbar.message}
+                </Alert>
+              </Snackbar>
+            }
+            {/* <Dialog></Dialog> */}
+            {/* <Modal> */}
+            {/* Modal must have a children */}
+            {/* </Modal> */}
+            {/*end dynamic global elements*/}
+
+            {/* <Footer></Footer> */}
+          </Router>
+        </CacheProvider>
+        <HiddenGetLyricsForm></HiddenGetLyricsForm>
+      {/* </ThemeProvider> */}
     </div>
   );
 }

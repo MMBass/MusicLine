@@ -12,7 +12,7 @@ function HomePage({ className }) {
   const settingsContext = useContext(SettingsContext);
 
   useEffect(() => {
-    
+
   }, [settingsContext]);
 
 
@@ -24,32 +24,36 @@ function HomePage({ className }) {
   return (
 
     <div className={className}>
-      {!currLyricsContext.currLyrics &&
-        <div>
-          <Typography variant="h2" className="page-h2">
-            שירים מתורגמים
-            <br></br>
-            שורה בשורה
-          </Typography>
-          <Typography variant="h3" className="page-h3">
-          שירים באנגלית מתורגמים לעברית
-          <br></br>
-          <small>
-          לחיצה על מילה תציג תרגומים נוספים   
-          </small>
-       </Typography>
-        </div>
-      }
+
+      <div className="home-top">
+        {!currLyricsContext.currLyrics &&
+          <div>
+            <Typography variant="h2" className="page-h2">
+              שירים מתורגמים
+              <br></br>
+              שורה בשורה
+            </Typography>
+            <Typography variant="h3" className="page-h3">
+              שירים באנגלית מתורגמים לעברית
+              <br></br>
+              <small>
+                לחיצה על מילה תציג תרגומים נוספים
+              </small>
+            </Typography>
+          </div>
+        }
 
 
-      <Box
-        component="form"
-        noValidate
-        autoComplete="off"
-        onSubmit={HandleSubmit}
-      >
-        <SearchBar></SearchBar>
-      </Box>
+        <Box
+          component="form"
+          noValidate
+          autoComplete="off"
+          onSubmit={HandleSubmit}
+        >
+          <SearchBar></SearchBar>
+        </Box>
+      </div>
+
 
       {currLyricsContext.currLyrics &&
         <LyricsBody className={'lyrics-body'} fontSize={settingsContext.fontSize}></LyricsBody>

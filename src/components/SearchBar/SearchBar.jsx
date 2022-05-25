@@ -1,4 +1,4 @@
-import { useEffect, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 
 import { TextField } from "@mui/material";
 
@@ -6,6 +6,8 @@ import { CurrLyricsContext } from '@context/CurrLyricsContext';
 import { BannersContext } from '@context/BannersContext';
 
 function SearchBar({ className }) {
+  const [currVal, setCurrVal] = useState('');
+
   const currLyricsContext = useContext(CurrLyricsContext);
   const bannersContext = useContext(BannersContext);
 
@@ -29,8 +31,16 @@ function SearchBar({ className }) {
     }
   }, []);
 
+  useEffect(() => {
+    setCurrVal(currLyricsContext.title);
+  }, [currLyricsContext.title]);
 
-  let linesChange = () => {
+  function setVal(e){
+    setCurrVal(e.target.value);
+    HandleSearch(e)
+  }
+
+  const linesChange = () => {
     setTimeout(() => {
       let lines = document.querySelectorAll(".gs-title");
 
@@ -52,7 +62,7 @@ function SearchBar({ className }) {
            
             line.addEventListener('click', (e) => {
               if (!currLyricsContext.proccess) {
-                currLyricsContext.getLines(currSong);
+                currLyricsContext.getLines(currSong, songTitle);
               }
             });
 
@@ -103,7 +113,7 @@ function SearchBar({ className }) {
 
   return (
     <div id="" className={className}>
-      <TextField id="outlined-search" label="חפש שיר" type="search" className="main-input" onChange={HandleSearch} autoFocus={false} autoComplete='off' />
+      <TextField id="outlined-search" label="חפש שיר" type="search" className="main-input" onChange={setVal} autoFocus={false} autoComplete='off' value={currVal} />
 
       <div className="gcse-search"></div>
 

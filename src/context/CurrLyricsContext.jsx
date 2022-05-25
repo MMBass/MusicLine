@@ -6,6 +6,7 @@ export const CurrLyricsContext = React.createContext(undefined);
 export default function CurrLyricsContextProvider(props) {
     const loadersContext = useContext(LoadersContext);
 
+    const [title, setTitle] = useState('');
     const [currLyrics, setCurrLyrics] = useState(sessionStorage.getItem('currLines') || false);
     const [singles, setSingles] = useState([]);
     const [lines, setLines] = useState(JSON.parse(sessionStorage.getItem('currLines')) || []);
@@ -16,7 +17,8 @@ export default function CurrLyricsContextProvider(props) {
 
     // const serverUri = 'http://localhost:5000';
 
-    const getLines = (currSong) => {
+    const getLines = (currSong, songTitle) => {
+        setTitle(songTitle);
         setProccess(true);
         loadersContext.openLoader('main');
 
@@ -34,7 +36,7 @@ export default function CurrLyricsContextProvider(props) {
             .then(response => response.json())
             .then(data => {
                 loadersContext.closeLoader('main');
-                sessionStorage.removeItem('currLines')
+                sessionStorage.removeItem('currLines');
 
                 if (data?.lyrics) {
                     let ly = data.lyrics;
@@ -158,7 +160,7 @@ export default function CurrLyricsContextProvider(props) {
     const actions = { getLines, getLinesTrans, checkNextTrans };
 
     return (
-        <CurrLyricsContext.Provider value={{ proccess, currLyrics, singles, lines, cou, ...actions }}>
+        <CurrLyricsContext.Provider value={{ title, proccess, currLyrics, singles, lines, cou, ...actions }}>
             {props.children}
         </CurrLyricsContext.Provider>
     );
