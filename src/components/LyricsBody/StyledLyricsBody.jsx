@@ -11,13 +11,19 @@ const StyledLyricsBody = styled(LyricsBody)`
   padding-inline-start: 50px;
   margin-top: 55px;
 
-  background-color: #EBECF0;
+  background-color: ${props => props.theme.palette.secondary.main};
   color: #172B4D;
   border-radius: 10px;
 
   @media (max-width: 600px) {
     padding-inline-start: 15px;
     padding-inline-end: 15px;
+  }
+  
+  h3{
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 25px;
   }
 
   .en-line{
@@ -62,12 +68,10 @@ const StyledLyricsBody = styled(LyricsBody)`
 
   @media (max-width: 600px) {
       .he-line{
-        /* font-size: 14px; */
         font-size: ${props => (props.fontSize.md - 5) + 'px'};
       }
 
       .en-line{
-        /* font-size: 20px; */
         font-size: ${props => props.fontSize.md + 'px'};
       }
   }

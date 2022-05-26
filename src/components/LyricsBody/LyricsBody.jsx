@@ -2,7 +2,8 @@ import React, { useContext, useEffect } from "react";
 
 import {
   Grid,
-  Box
+  Box,
+  Typography
 } from '@mui/material';
 
 import { default as LyricToolTip } from '@components/LyricToolTip/StyledLyricToolTip'
@@ -21,13 +22,20 @@ function LyricsBody({ className, ...props }) {
       <Grid container spacing={2}>
         {currLyricsContext.lines &&
           <div id="lyrics_body" className={className}>
+            <Typography
+              variant="h6"
+              noWrap
+              component="h3"
+            >
+              {currLyricsContext.title && currLyricsContext.title}
+            </Typography>
             {currLyricsContext.lines.map((line, y) => {
               if (line.src.includes('[')) {
-                  line.trans = '   ';
+                line.trans = '   ';
               }
               return (
                 <div>
-                  {line.src.includes('[') && <><br></br><br></br></>}
+                  {(y > 0 && line.src.includes('[')) && <><br></br><br></br></>}
 
                   <Grid className="lyrics-line en-line" item key={y.toString() + Math.floor(Math.random() * 30000)}>
                     {line.src.split(' ').map((word, i) => {
@@ -42,7 +50,7 @@ function LyricsBody({ className, ...props }) {
                       {
                         line.trans?.length > 2 ?
                           line.trans.split(' ').map((word, i) => {
-                            if(line.trans === '   ') return;
+                            if (line.trans === '   ') return;
                             return (
                               <small onLoad={() => { currLyricsContext.checkNextTrans() }} className="single-trans" key={i}>{word} &nbsp;</small>
                             )

@@ -29,9 +29,9 @@ function HomePage({ className }) {
         {!currLyricsContext.currLyrics &&
           <div>
             <Typography variant="h2" className="page-h2">
-              {/* שירים מתורגמים
+              שירים מתורגמים
               <br></br>
-              שורה בשורה */}
+              שורה בשורה
             </Typography>
             <Typography variant="h3" className="page-h3">
               שירים באנגלית מתורגמים לעברית

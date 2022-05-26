@@ -40,11 +40,11 @@ const Header = ({ className, ...props }) => {
       <Container maxWidth="xl">
         <Toolbar disableGutters>
 
-          <NavLink to={'/'} onClick={removeLsLines()}>
+          <NavLink to={'/'} onClick={()=>{ removeLsLines() }}>
             <Typography
               variant="h6"
               noWrap
-              component="div"
+              component="h1"
               sx={{ mr: 2, display: 'flex' }}
             >
               מיוזיק ליין

@@ -6,7 +6,7 @@ export const CurrLyricsContext = React.createContext(undefined);
 export default function CurrLyricsContextProvider(props) {
     const loadersContext = useContext(LoadersContext);
 
-    const [title, setTitle] = useState('');
+    const [title, setTitle] = useState( sessionStorage.getItem('cuurSongTitle') || '');
     const [currLyrics, setCurrLyrics] = useState(sessionStorage.getItem('currLines') || false);
     const [singles, setSingles] = useState([]);
     const [lines, setLines] = useState(JSON.parse(sessionStorage.getItem('currLines')) || []);
@@ -36,7 +36,7 @@ export default function CurrLyricsContextProvider(props) {
             .then(response => response.json())
             .then(data => {
                 loadersContext.closeLoader('main');
-                sessionStorage.removeItem('currLines');
+                // sessionStorage.removeItem('currLines'); // TODO why running on every reload?
 
                 if (data?.lyrics) {
                     let ly = data.lyrics;
@@ -101,6 +101,7 @@ export default function CurrLyricsContextProvider(props) {
 
                     setLines(newLines);
                     sessionStorage.setItem('currLines', JSON.stringify(lines));
+                    sessionStorage.setItem('cuurSongTitle', (title));
 
                     setCou(cou + 1)
 
@@ -112,6 +113,7 @@ export default function CurrLyricsContextProvider(props) {
 
                     if (lastTrans.length >= 1) {
                         sessionStorage.setItem('currLines', JSON.stringify(lines));
+                        sessionStorage.setItem('cuurSongTitle', (title));
                     }
 
                     setCou(cou + 1)
@@ -129,6 +131,7 @@ export default function CurrLyricsContextProvider(props) {
 
                     if (lastTrans.length >= 1) {
                         sessionStorage.setItem('currLines', JSON.stringify(lines));
+                        sessionStorage.setItem('cuurSongTitle', (title));
                     }
 
                     setCou(cou + 1);

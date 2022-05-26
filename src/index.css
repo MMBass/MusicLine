@@ -99,13 +99,21 @@ body {
   cursor: pointer;
 }
 
+.gsc-result *{
+  background-color: rgba(136, 136, 136, 0) !important;
+}
+
+.gsc-result:hover, .gsc-result:focus{
+  background-color: rgb(205, 205, 205) !important;
+}
+
 .gsc-url-top {
   display: none !important;
 }
 
 .gsc-webResult a,
 .gsc-result a {
-  /* pointer-events: none; */
+  pointer-events: none;
   /* display: inline; */
 }
 
