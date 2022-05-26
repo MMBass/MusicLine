@@ -11,7 +11,7 @@ const StyledLyricsBody = styled(LyricsBody)`
   padding-inline-start: 50px;
   margin-top: 55px;
 
-  background-color: ${props => props.theme.palette.secondary.main};
+  background-color: #EBECF0;
   color: #172B4D;
   border-radius: 10px;
 

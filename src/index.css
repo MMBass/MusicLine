@@ -93,6 +93,14 @@ body {
   color: rgb(71, 71, 71) !important;
 }
 
+.gs-title {
+  color: rgb(21 58 111) !important;
+}
+
+.gcsc-find-more-on-google-root{
+  display: none !important;
+}
+
 .gsc-webResult {
   /* min-height: 50px; */
   padding: 2px;
