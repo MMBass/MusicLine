@@ -15,9 +15,9 @@ export default function CurrLyricsContextProvider(props) {
     const [cou, setCou] = useState(0); // helps to force useEffect
     const [proccess, setProccess] = useState(false); // helps to block double-click
 
-    // const serverUri = 'https://musicline-backend-basssites.vercel.app';
+    const serverUri = 'https://musicline-backend-basssites.vercel.app';
 
-    const serverUri = 'http://localhost:5000';
+    // const serverUri = 'http://localhost:5000';
 
     const getLines = (currSong, songTitle) => {
         setProccess(true);
