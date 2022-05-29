@@ -8,6 +8,7 @@ const StyledLyricsBody = styled(LyricsBody)`
   margin: 25px;
   margin-inline-end: 10px;
   padding: 15px 50px;
+  padding-bottom: 40px;
   padding-inline-start: 50px;
   margin-top: 55px;
 

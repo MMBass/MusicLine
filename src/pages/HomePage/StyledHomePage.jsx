@@ -10,6 +10,19 @@ const StyledHomePage = styled(HomePage)`
         }
     }
     
+
+    .small-one{
+        @media (max-width: 600px) {
+            font-size: 16px;
+            }
+        font-size: 25px;
+        margin-bottom: 15px;
+    }
+
+    .small-two{
+        word-spacing: -0.5px;
+    }
+
     .MuiTextField-root { 
         margin-top: 35px;
         /* margin-inline-start: 10px; */

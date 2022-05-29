@@ -9,7 +9,6 @@ export default function BannersContextProvider(props) {
     });
 
     const createBanner = (name, severity, title, message) => {
-        console.log(message);
         if (banners[name]) {
             setBanners({ ...banners, [name]: undefined });
         }

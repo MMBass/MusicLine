@@ -120,7 +120,7 @@ function App({ className }) {
             {/* </Modal> */}
             {/*end dynamic global elements*/}
 
-            {/* <Footer></Footer> */}
+            <Footer></Footer>
           </Router>
         </CacheProvider>
         <HiddenGetLyricsForm></HiddenGetLyricsForm>

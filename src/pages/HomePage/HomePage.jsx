@@ -34,11 +34,19 @@ function HomePage({ className }) {
               שורה בשורה
             </Typography>
             <Typography variant="h3" className="page-h3">
-              שירים באנגלית מתורגמים לעברית
+              חפש בין מיליוני שירים באנגלית
               <br></br>
-              <small>
-                לחיצה על מילה תציג תרגומים נוספים
-              </small>
+              וקבל את השיר מתורגם לעברית
+              <br></br>
+              <p className="small-one">
+                לא מצאת? נסה לחפש עם שם האמן
+              </p>
+              <div className="small-two">
+                <small >
+                  לחיצה על מילה תציג תרגומים נוספים
+                </small>
+              </div>
+
             </Typography>
           </div>
         }
