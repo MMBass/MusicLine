@@ -20,7 +20,9 @@ function LyricsBody({ className, ...props }) {
   }, [currLyricsContext, currLyricsContext.cou]);
 
   useEffect(() => {
-    bannersContext.closeBanner('error');
+    if(bannersContext.error){
+      bannersContext.closeBanner('error');
+    }
   }, []);
 
   return (
@@ -29,7 +31,6 @@ function LyricsBody({ className, ...props }) {
         {currLyricsContext.lines &&
           <div id="lyrics_body" className={className}>
 
-            {/* <Grid className="lyrics-line en-line" item> */}
               <Typography
                 variant="h6"
                 noWrap
@@ -43,7 +44,6 @@ function LyricsBody({ className, ...props }) {
                   })
                 }
               </Typography>
-            {/* </Grid> */}
 
             {currLyricsContext.lines.map((line, y) => {
               if (line.src.includes('[')) {

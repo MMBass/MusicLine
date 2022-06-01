@@ -23,8 +23,8 @@ const StyledLyricsBody = styled(LyricsBody)`
   
   h3{
     text-align: center;
-    margin-top: 15px;
-    margin-bottom: 25px;
+    margin-top: 30px;
+    margin-bottom: 40px;
     white-space: break-spaces;
 
     @media (max-width: 600px) {
@@ -32,7 +32,7 @@ const StyledLyricsBody = styled(LyricsBody)`
     }
   }
 
-  .en-line p, .he-line small, h3{
+  .en-line p, .he-line small{
     margin: unset;
     display: inline-block;
   }

@@ -3,7 +3,7 @@ import Footer from './Footer';
 
 const StyledFooter = styled(Footer)`
   color: ${props => props.theme.palette.secondary.dark};
-  background-color: ${props => props.theme.palette.secondary.main};
+  background-color: #f8f8f8;
   padding: 25px 30px 30px 25px;
   text-align: start;
   
