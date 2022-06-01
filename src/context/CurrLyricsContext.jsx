@@ -8,7 +8,7 @@ export default function CurrLyricsContextProvider(props) {
     const loadersContext = useContext(LoadersContext);
     const bannersContext = useContext(BannersContext);
 
-    const [title, setTitle] = useState( (sessionStorage.getItem('currLines')&&sessionStorage.getItem('cuurSongTitle')) || '');
+    const [title, setTitle] = useState((sessionStorage.getItem('currLines') && sessionStorage.getItem('cuurSongTitle')) || '');
     const [currLyrics, setCurrLyrics] = useState(sessionStorage.getItem('currLines') || false);
     const [singles, setSingles] = useState([]);
     const [lines, setLines] = useState(JSON.parse(sessionStorage.getItem('currLines')) || []);
@@ -22,7 +22,6 @@ export default function CurrLyricsContextProvider(props) {
     const getLines = (currSong, songTitle) => {
         setProccess(true);
         loadersContext.openLoader('main');
-        bannersContext.closeBanner('error');
 
         fetch(`${serverUri}/lyrics`, {
             method: 'post',
@@ -37,11 +36,11 @@ export default function CurrLyricsContextProvider(props) {
         })
             .then(response => response.json())
             .then(data => {
-                console.log(data);
                 loadersContext.closeLoader('main');
-                // sessionStorage.removeItem('currLines'); // TODO why running on every reload?
+                sessionStorage.removeItem('currLines'); // TODO track if running every reload
 
                 if (data?.lyrics) {
+
                     setTitle(songTitle);
                     let ly = data.lyrics;
                     // ly = ly.substring(0, ly.indexOf("..."));
@@ -59,7 +58,7 @@ export default function CurrLyricsContextProvider(props) {
                         gsc_clear.dispatchEvent(new Event('click'));
                     }
                     setProccess(true);
-                }else{
+                } else {
                     bannersContext.createBanner('error', 'error', 'לא נמצא, נסה שוב או חפש שיר אחר', '');
                 }
             }

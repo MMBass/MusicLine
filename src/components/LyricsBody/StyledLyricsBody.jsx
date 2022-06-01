@@ -12,7 +12,7 @@ const StyledLyricsBody = styled(LyricsBody)`
   padding-inline-start: 50px;
   margin-top: 55px;
 
-  background-color: #EBECF0;
+  background-color: #f8f8f8;
   color: #172B4D;
   border-radius: 10px;
 
@@ -25,18 +25,15 @@ const StyledLyricsBody = styled(LyricsBody)`
     text-align: center;
     margin-top: 15px;
     margin-bottom: 25px;
+    white-space: break-spaces;
+
+    @media (max-width: 600px) {
+      font-size: 19px;
+    }
   }
 
-  .en-line{
-    /* overflow: hidden; // todo remove after grid fixed? */
-  }
-
-  .en-line p{
+  .en-line p, .he-line small, h3{
     margin: unset;
-    display: inline-block;
-  }
-
-  .he-line small{
     display: inline-block;
   }
 

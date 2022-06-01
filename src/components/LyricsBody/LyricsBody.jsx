@@ -9,26 +9,42 @@ import {
 import { default as LyricToolTip } from '@components/LyricToolTip/StyledLyricToolTip'
 
 import { CurrLyricsContext } from '@context/CurrLyricsContext';
+import { BannersContext } from '@context/BannersContext';
 
 function LyricsBody({ className, ...props }) {
   const currLyricsContext = useContext(CurrLyricsContext);
+  const bannersContext = useContext(BannersContext);
 
   useEffect(() => {
     currLyricsContext.checkNextTrans();
   }, [currLyricsContext, currLyricsContext.cou]);
+
+  useEffect(() => {
+    bannersContext.closeBanner('error');
+  }, []);
 
   return (
     <Box>
       <Grid container spacing={2}>
         {currLyricsContext.lines &&
           <div id="lyrics_body" className={className}>
-            <Typography
-              variant="h6"
-              noWrap
-              component="h3"
-            >
-              {currLyricsContext.title && currLyricsContext.title}
-            </Typography>
+
+            {/* <Grid className="lyrics-line en-line" item> */}
+              <Typography
+                variant="h6"
+                noWrap
+                component="h3"
+              >
+                {currLyricsContext.title &&
+                  currLyricsContext.title.split(' ').map((word, i) => {
+                    return (
+                      <LyricToolTip key={i} lyric={word}></LyricToolTip>
+                    )
+                  })
+                }
+              </Typography>
+            {/* </Grid> */}
+
             {currLyricsContext.lines.map((line, y) => {
               if (line.src.includes('[')) {
                 line.trans = '   ';

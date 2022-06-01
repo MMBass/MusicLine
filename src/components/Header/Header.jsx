@@ -11,6 +11,8 @@ import {
   IconButton,
   Typography,
   Container,
+  Alert,
+  AlertTitle 
 
 } from '@mui/material';
 
@@ -20,18 +22,20 @@ import { default as ChangeColors } from '@components/ChangeColors/StyledChangeCo
 
 import { DrawerContext } from '@context/DrawerContext';
 import { CurrLyricsContext } from '@context/CurrLyricsContext';
+import { BannersContext } from '@context/BannersContext';
 
 import { NavLink } from 'react-router-dom';
 
 const Header = ({ className, ...props }) => {
   const drawerContext = useContext(DrawerContext);
-  const currLyricsContext = useContext(CurrLyricsContext)
+  const currLyricsContext = useContext(CurrLyricsContext);
+  const bannersContext = useContext(BannersContext);
 
   const handleOpenNavMenu = () => {
     drawerContext.openDrawer(true, 'left', 'temporary', SidePagesList);
   };
 
-  const removeLsLines = function(){
+  const removeLsLines = function () {
     sessionStorage.removeItem('currLines');
   }
 
@@ -40,7 +44,7 @@ const Header = ({ className, ...props }) => {
       <Container maxWidth="xl">
         <Toolbar disableGutters>
 
-          <NavLink to={'/'} onClick={()=>{ removeLsLines() }}>
+          <NavLink to={'/'} onClick={() => { removeLsLines() }}>
             <Typography
               variant="h6"
               noWrap
@@ -51,16 +55,22 @@ const Header = ({ className, ...props }) => {
             </Typography>
           </NavLink>
 
-          {currLyricsContext.lines[0] && <ChangeSize></ChangeSize>} 
+          {currLyricsContext.lines[0] && <ChangeSize></ChangeSize>}
 
           <Box sx={{ display: { xs: 'flex', md: 'flex' }, flexGrow: 1 }}>
             <ChangeColors onClick={handleOpenNavMenu}></ChangeColors>
           </Box>
 
           {/* <NavBar className="nav-bar"></NavBar> */}
-          
+
         </Toolbar>
       </Container>
+      {(bannersContext.error?.open) &&
+        <Alert severity="error" className='error-alert' onClose={() => { bannersContext.closeBanner('error') }}>
+          <AlertTitle>{bannersContext.error?.title}</AlertTitle>
+          {bannersContext.error?.message}
+        </Alert>
+      }
     </AppBar>
   );
 };

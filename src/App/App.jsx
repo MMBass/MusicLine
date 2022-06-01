@@ -57,8 +57,7 @@ function App({ className }) {
 
   useEffect(() => {
     init();
-
-  }, []);
+  }, [bannersContext]);
 
   const handleCloseSnackbar = (name) => {
     bannersContext.closeBanner(name);
@@ -81,12 +80,6 @@ function App({ className }) {
               <Alert severity="warning" className='main-alert'>
                 <AlertTitle>{bannersContext.main.title}</AlertTitle>
                 {bannersContext.main.message}
-              </Alert>
-            }
-            {(bannersContext.error?.open) &&
-              <Alert severity="error" className='error-alert' onClose={() => { bannersContext.closeBanner('error') }}>
-                <AlertTitle>{bannersContext.error?.title}</AlertTitle>
-                {bannersContext.error?.message}
               </Alert>
             }
             <Layout>
