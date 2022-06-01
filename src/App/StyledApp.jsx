@@ -62,17 +62,6 @@ const StyledApp = styled(App)`
     border-radius: unset;
   }
 
-  /* .toolTip-title{
-    direction: rtl;
-    text-align: center;
-  }
-
-  .tt-body *{
-    /* text-align: center; */
-    /* overflow-y: scroll;
-    max-height: 110px; */
-  /* } */ 
-
   .loader{
       padding: 20px;
   }

@@ -57,9 +57,9 @@ const Header = ({ className, ...props }) => {
 
           {currLyricsContext.lines[0] && <ChangeSize></ChangeSize>}
 
-          <Box sx={{ display: { xs: 'flex', md: 'flex' }, flexGrow: 1 }}>
+          {/* <Box sx={{ display: { xs: 'flex', md: 'flex' }, flexGrow: 1 }}>
             <ChangeColors onClick={handleOpenNavMenu}></ChangeColors>
-          </Box>
+          </Box> */}
 
           {/* <NavBar className="nav-bar"></NavBar> */}
 

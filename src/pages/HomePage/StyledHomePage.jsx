@@ -7,14 +7,39 @@ const StyledHomePage = styled(HomePage)`
 
        @media (max-width: 600px) {
         padding: 0 25px;
-        }
+       }
     }
     
+    .h3-s-one{
+        @media (min-width: 600px) {
+            word-spacing: 9px;
+            letter-spacing: 0.5px;
+        }
+
+        @media (max-width: 600px) {
+            font-size: 24px;
+            word-spacing: 1px;
+        }
+   
+    }
+
+    .h3-s-two{
+        @media (min-width: 600px) {
+            word-spacing: 9px;
+            letter-spacing: 0.3px;
+        }
+
+        @media (max-width: 600px) {
+            font-size: 24px;
+        }
+   
+    }
 
     .small-one{
         @media (max-width: 600px) {
             font-size: 16px;
-            }
+        }
+
         font-size: 25px;
         margin-bottom: 15px;
     }
