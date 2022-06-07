@@ -62,6 +62,7 @@ function SearchBar({ className }) {
            
             line.addEventListener('click', (e) => {
               if (!currLyricsContext.proccess) {
+                bannersContext.closeBanner('error');
                 currLyricsContext.getLines(currSong, songTitle);
               }
             });

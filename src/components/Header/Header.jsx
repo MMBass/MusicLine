@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 import { Menu as MenuIcon } from '@mui/icons-material';
 
@@ -12,9 +12,10 @@ import {
   Typography,
   Container,
   Alert,
-  AlertTitle 
+  AlertTitle
 
 } from '@mui/material';
+import Collapse from '@mui/material/Collapse';
 
 import { default as SidePagesList } from '../SidePagesList/StyledSidePagesList';
 import { default as NavBar } from '@components/NavBar/StyledNavBar';
@@ -31,6 +32,8 @@ const Header = ({ className, ...props }) => {
   const currLyricsContext = useContext(CurrLyricsContext);
   const bannersContext = useContext(BannersContext);
 
+  const [errorB, setErrorB] = useState(false);
+
   const handleOpenNavMenu = () => {
     drawerContext.openDrawer(true, 'left', 'temporary', SidePagesList);
   };
@@ -38,6 +41,10 @@ const Header = ({ className, ...props }) => {
   const removeLsLines = function () {
     sessionStorage.removeItem('currLines');
   }
+
+  useEffect(() => {
+      setErrorB(bannersContext.error?.open && true);
+  }, [bannersContext.error?.open]);
 
   return (
     <AppBar position="sticky" className={className}>
@@ -65,12 +72,16 @@ const Header = ({ className, ...props }) => {
 
         </Toolbar>
       </Container>
-      {(bannersContext.error?.open) &&
-        <Alert severity="error" className='error-alert' onClose={() => { bannersContext.closeBanner('error') }}>
-          <AlertTitle>{bannersContext.error?.title}</AlertTitle>
-          {bannersContext.error?.message}
-        </Alert>
-      }
+      {/* {(errorB) && */}
+              <Collapse in={bannersContext.error?.open}>
+          <Alert severity="error" className='error-alert' onClose={() => { bannersContext.closeBanner('error') }}>
+            <AlertTitle>{bannersContext.error?.title}</AlertTitle>
+            {bannersContext.error?.message}
+          </Alert>
+            </Collapse>
+      {/* } */}
+
+             
     </AppBar>
   );
 };

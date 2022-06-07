@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import { LoadersContext } from '@context/LoadersContext';
 import { BannersContext } from '@context/BannersContext';
 
@@ -14,7 +14,7 @@ export default function CurrLyricsContextProvider(props) {
     const [lines, setLines] = useState(JSON.parse(sessionStorage.getItem('currLines')) || []);
     const [cou, setCou] = useState(0); // helps to force useEffect
     const [proccess, setProccess] = useState(false); // helps to block double-click
-
+    
     const serverUri = 'https://musicline-backend-basssites.vercel.app';
 
     // const serverUri = 'http://localhost:5000';

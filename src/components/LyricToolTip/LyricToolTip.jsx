@@ -38,7 +38,7 @@ function LyricToolTip({ className, ...props }) {
 
   const handleCallResults = useCallback(() => {
     callResults();
-  }, [])
+  }, []);
 
   function callResults() {
 

@@ -10,20 +10,16 @@ import { default as LyricToolTip } from '@components/LyricToolTip/StyledLyricToo
 
 import { CurrLyricsContext } from '@context/CurrLyricsContext';
 import { BannersContext } from '@context/BannersContext';
+import { LoadersContext } from '@context/LoadersContext';
 
 function LyricsBody({ className, ...props }) {
   const currLyricsContext = useContext(CurrLyricsContext);
   const bannersContext = useContext(BannersContext);
+  const loadersContext = useContext(LoadersContext);
 
   useEffect(() => {
     currLyricsContext.checkNextTrans();
   }, [currLyricsContext, currLyricsContext.cou]);
-
-  useEffect(() => {
-    if(bannersContext.error){
-      bannersContext.closeBanner('error');
-    }
-  }, []);
 
   return (
     <Box>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState } from 'react';
 
 export const BannersContext = React.createContext(undefined);
 
@@ -24,6 +24,10 @@ export default function BannersContextProvider(props) {
     }
 
     const closeBanner = (name) => {
+        setBanners({
+            main: { open: true, severity: "warning", title: "האתר בבניה", message: "" },
+            snackbar: { open: false, severity: "success", title: "", message: "This is a Snackbar!" },
+        })
         if (banners[name]) {
             setBanners({ ...banners, [name]: { ...banners[name], open: false } });
         } else {
@@ -31,7 +35,7 @@ export default function BannersContextProvider(props) {
         }
     }
 
-    const actions = { createBanner, openBanner, closeBanner};
+    const actions = { createBanner, openBanner, closeBanner };
 
     return (
         <BannersContext.Provider value={{ ...banners, ...actions }}>
