@@ -19,7 +19,7 @@ function LyricsBody({ className, ...props }) {
 
   useEffect(() => {
     currLyricsContext.checkNextTrans();
-  }, [currLyricsContext, currLyricsContext.cou]);
+  }, [ currLyricsContext.cou]);
 
   return (
     <Box>

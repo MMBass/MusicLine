@@ -83,6 +83,7 @@ function SearchBar({ className }) {
 
   function HandleSearch(event) {
     let gsc_input = document.querySelector('#gsc-i-id1');
+    let en_pattern = /^[~`!@#$%^&*()_+=[\]\{}|;':",.\/<>?a-zA-Z0-9-]+$/;
 
     if (gsc_input) {
       if (event.target.value.length <= 1) {
@@ -91,7 +92,8 @@ function SearchBar({ className }) {
         if (gsc_clear) {
           gsc_clear.dispatchEvent(new Event('click'));
         }
-      } else {
+        
+      } else if(en_pattern.test(event.target.value)){
         gsc_input.value = event.target.value;
 
         let gsc_btn = document.querySelectorAll('.gsc-search-box button')[0];
@@ -105,6 +107,9 @@ function SearchBar({ className }) {
           bannersContext.createBanner('error', 'error', 'משהו השתבש, נסה לרענן את העמוד', '(no gsc loaded)');
           console.error("no gsc loaded, try reload the page");
         }
+      }else{
+        bannersContext.createBanner('error', 'error', 'הזן אנגלית בלבד', '');
+        return;
       }
     } else {
       bannersContext.createBanner('error', 'error', 'משהו השתבש, נסה לרענן את העמוד', '(no gsc loaded)');

@@ -86,6 +86,76 @@ export default function CurrLyricsContextProvider(props) {
         }
     }
 
+    const getLineTrans = (src, index) => {
+        fetch(`${serverUri}/single-line-trans`, {
+            method: 'post',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                "line": encodeURI(src)
+            })
+        })
+            .then(response => response.json())
+            .then(data => {
+               if (data?.trans) {
+                let newLines = lines;
+                    console.log(data);
+                    newLines[index] = { src: src, trans: data?.trans };
+                    setLines(newLines);
+
+                    let lastTrans = lines[lines.length - 1]?.trans;
+
+                    if (lastTrans.length >= 1) {
+                        sessionStorage.setItem('currLines', JSON.stringify(lines));
+                        sessionStorage.setItem('cuurSongTitle', (title));
+                    }
+
+                    setCou(cou + 1)
+                } else {
+                    if (lines[index].trans === undefined) {
+                        newLines[index] = { src: src, trans: 'טוען תרגום..' };
+                    }
+                    if (lines[index].trans === 'טוען תרגום..') {
+                        newLines[index] = { src: src, trans: "[missing]" };
+                    }
+
+                    setLines(newLines);
+
+                    let lastTrans = lines[lines.length - 1]?.trans;
+
+                    if (lastTrans.length >= 1) {
+                        sessionStorage.setItem('currLines', JSON.stringify(lines));
+                        sessionStorage.setItem('cuurSongTitle', (title));
+                    }
+
+                    setCou(cou + 1);
+                }
+            }
+            ).catch((e) => {
+                let newLines = lines;
+
+                if (lines[index].trans === '') {
+                    newLines[index] = { src: src, trans: 'טוען תרגום..' };
+                }
+                if (lines[index].trans === 'טוען תרגום..') {
+                    newLines[index] = { src: src, trans: "[missing]" };
+                }
+
+                setLines(newLines);
+
+                let lastTrans = lines[lines.length - 1]?.trans;
+
+                if (lastTrans.length >= 1) {
+                    sessionStorage.setItem('currLines', JSON.stringify(lines));
+                }
+
+                setCou(cou + 1);
+                console.log(e);
+            });
+    }
+
     const getLinesTrans = (src, index) => {
         fetch(`${serverUri}/line-trans`, {
             method: 'post',
@@ -167,7 +237,7 @@ export default function CurrLyricsContextProvider(props) {
             });
     }
 
-    const actions = { getLines, getLinesTrans, checkNextTrans };
+    const actions = { getLines, getLinesTrans, getLineTrans,  checkNextTrans };
 
     return (
         <CurrLyricsContext.Provider value={{ title, proccess, currLyrics, singles, lines, cou, ...actions }}>
