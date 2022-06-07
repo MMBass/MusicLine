@@ -82,8 +82,12 @@ function SearchBar({ className }) {
   }
 
   function HandleSearch(event) {
+    if(bannersContext.error){
+      bannersContext.closeBanner('error');
+    }
+
     let gsc_input = document.querySelector('#gsc-i-id1');
-    let en_pattern = /^[~`!@#$%^&*()_+=[\]\{}|;':",.\/<>?a-zA-Z0-9-]+$/;
+    let en_pattern = /^[~`!@#$%^&*()_+=[\]\{}|;':",.\/<>?a-zA-Z0-9- ]+$/;
 
     if (gsc_input) {
       if (event.target.value.length <= 1) {
