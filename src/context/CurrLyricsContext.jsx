@@ -15,7 +15,7 @@ export default function CurrLyricsContextProvider(props) {
     const [cou, setCou] = useState(0); // helps to force useEffect
     const [proccess, setProccess] = useState(false); // helps to block double-click
     
-    const serverUri = 'https://musicline-backend-basssites.vercel.app';
+    const serverUri = 'https://musicline-backend.vercel.app';
 
     // const serverUri = 'http://localhost:5000';
 
@@ -36,6 +36,7 @@ export default function CurrLyricsContextProvider(props) {
         })
             .then(response => response.json())
             .then(data => {
+
                 loadersContext.closeLoader('main');
                 sessionStorage.removeItem('currLines'); // TODO track if running every reload
 
@@ -62,7 +63,8 @@ export default function CurrLyricsContextProvider(props) {
                     bannersContext.createBanner('error', 'error', 'לא נמצא, נסה שוב או חפש שיר אחר', '');
                 }
             }
-            ).catch((e) => {
+            ).catch((e) => {           
+                console.log('ERRORR ' +e);
                 console.log(e);
                 loadersContext.closeLoader('main');
                 bannersContext.createBanner('error', 'error', 'לא נמצא, נסה שוב או חפש שיר אחר', '');

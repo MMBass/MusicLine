@@ -76,12 +76,15 @@ function App({ className }) {
           <Router>
             <HeadTags></HeadTags>
             <Header className="header"></Header>
+
             {(bannersContext.main.open) &&
               <Alert severity="warning" className='main-alert'>
                 <AlertTitle>{bannersContext.main.title}</AlertTitle>
                 {bannersContext.main.message}
               </Alert>
             }
+
+
             <Layout>
               <Routes>
                 <Route path={"/"} element={<HomePage className={'page'} />} />

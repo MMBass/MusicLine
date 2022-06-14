@@ -43,7 +43,7 @@ const Header = ({ className, ...props }) => {
   }
 
   useEffect(() => {
-      setErrorB(bannersContext.error?.open && true);
+    setErrorB(bannersContext.error?.open && true);
   }, [bannersContext.error?.open]);
 
   return (
@@ -73,15 +73,15 @@ const Header = ({ className, ...props }) => {
         </Toolbar>
       </Container>
       {/* {(errorB) && */}
-              <Collapse in={bannersContext.error?.open}>
-          <Alert severity="error" className='error-alert' onClose={() => { bannersContext.closeBanner('error') }}>
-            <AlertTitle>{bannersContext.error?.title}</AlertTitle>
-            {bannersContext.error?.message}
-          </Alert>
-            </Collapse>
+      <Collapse in={bannersContext.error?.open}>
+        <Alert severity="error" className='error-alert' onClose={() => { bannersContext.closeBanner('error') }}>
+          <AlertTitle>{bannersContext.error?.title}</AlertTitle>
+          {bannersContext.error?.message}
+        </Alert>
+      </Collapse>
       {/* } */}
 
-             
+
     </AppBar>
   );
 };

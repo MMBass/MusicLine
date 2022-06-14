@@ -21,12 +21,13 @@ const StyledApp = styled(App)`
     font-weight: 400;
     color: ${props => props.theme.palette.secondary.main};
     @media (max-width: 600px) {
+      margin-top: 0px;
       font-size: 46px;
     }
   }
 
   .page-h3{
-    margin: 15px 0px 0px  0px;
+    margin: 40px 0px 0px  0px;
     font-size: 38px; // 29
     font-weight: 500;
     color: ${props => props.theme.palette.secondary.main};
@@ -36,6 +37,7 @@ const StyledApp = styled(App)`
     }
 
     @media (max-width: 600px) {
+      margin: 15px 0px 0px  0px;
       font-size: 22px;
 
       small{

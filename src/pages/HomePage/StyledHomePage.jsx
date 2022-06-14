@@ -9,6 +9,10 @@ const StyledHomePage = styled(HomePage)`
         padding: 0 25px;
        }
     }
+
+    .home-t-container{
+        padding-top: 30px;
+    }
     
     .h3-s-one{
         @media (min-width: 600px) {
@@ -51,7 +55,7 @@ const StyledHomePage = styled(HomePage)`
     .MuiTextField-root { 
         margin-top: 35px;
         /* margin-inline-start: 10px; */
-        width: 480px;
+        width: 450px;
         border-color: white;
 
         @media (max-width: 600px) {
