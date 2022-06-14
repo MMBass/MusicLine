@@ -4,7 +4,7 @@ import MetaTags from 'react-meta-tags';
 import { theme } from '@/theme';
 
 function HeadTags() {
-  const [themeColor, setColor] = useState(theme.palette.primary.light);
+  const [themeColor, setColor] = useState(theme.palette.primary.main);
 
   return (
     <div className='wrapper'>

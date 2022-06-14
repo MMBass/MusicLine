@@ -2,7 +2,9 @@ import { styled } from '@mui/material/styles';
 import SearchBar from './SearchBar';
 
 const StyledSearchBar = styled(SearchBar)`
-  padding-inline-start: 10px;
+  @media (min-width: 600px) {
+     padding-inline-start: 10px;
+  }
 
   *,::before,::after{
       background-color: '#ffffff0';

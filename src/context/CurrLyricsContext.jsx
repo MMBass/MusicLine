@@ -80,7 +80,8 @@ export default function CurrLyricsContextProvider(props) {
                 break;
             } else if (line.trans.length <= 1 || line.trans === 'טוען תרגום..') {
                 count = true;
-                getLinesTrans(line.src, index);
+                getLineTrans(line.src, index); // prod
+                // getLinesTrans(line.src, index); // dev
                 break;
             } else {
                 continue;
