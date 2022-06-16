@@ -71,6 +71,10 @@ const StyledHomePage = styled(HomePage)`
     .lyrics-body, .MuiGrid-root, .muirtl-mhc70k-MuiGrid-root{
         direction: ltr;
     }
+
+    .second-search-ctr{
+       padding-inline-start: 10px;
+    }
     
 `;
 

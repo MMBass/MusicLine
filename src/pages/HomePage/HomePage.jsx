@@ -80,6 +80,7 @@ function HomePage({ className }) {
           noValidate
           autoComplete="off"
           onSubmit={HandleSubmit}
+          className="second-search-ctr"
         >
           <SearchBar></SearchBar>
         </Box>

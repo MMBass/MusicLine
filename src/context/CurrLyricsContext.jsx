@@ -14,7 +14,7 @@ export default function CurrLyricsContextProvider(props) {
     const [lines, setLines] = useState(JSON.parse(sessionStorage.getItem('currLines')) || []);
     const [cou, setCou] = useState(0); // helps to force useEffect
     const [proccess, setProccess] = useState(false); // helps to block double-click
-    
+
     const serverUri = 'https://musicline-backend.vercel.app';
 
     // const serverUri = 'http://localhost:5000';
@@ -63,8 +63,8 @@ export default function CurrLyricsContextProvider(props) {
                     bannersContext.createBanner('error', 'error', 'לא נמצא, נסה שוב או חפש שיר אחר', '');
                 }
             }
-            ).catch((e) => {           
-                console.log('ERRORR ' +e);
+            ).catch((e) => {
+                console.log('ERRORR ' + e);
                 console.log(e);
                 loadersContext.closeLoader('main');
                 bannersContext.createBanner('error', 'error', 'לא נמצא, נסה שוב או חפש שיר אחר', '');
@@ -80,8 +80,12 @@ export default function CurrLyricsContextProvider(props) {
                 break;
             } else if (line.trans.length <= 1 || line.trans === 'טוען תרגום..') {
                 count = true;
-                // getLineTrans(line.src, index); // prod
-                getLinesTrans(line.src, index); // dev
+
+
+                if (window.location.origin.includes('github')) getFullTrans(line.src, index); // dev
+                else getSingleLineTrans(line.src, index); // prod
+
+
                 break;
             } else {
                 continue;
@@ -89,7 +93,28 @@ export default function CurrLyricsContextProvider(props) {
         }
     }
 
-    const getLineTrans = (src, index) => {
+    const getPartlyTrsans = () => {
+        if (lines[0]?.length >= 1) {
+            // split for two parts, make a long string with pluses and then run the first, when response OK - continue to next part by make a long string with pluses again
+
+            //const plusedLines
+            fetch(`${serverUri}/line-trans`, {
+                method: 'post',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    "lines": lines
+                })
+            })
+        } else {
+            console.error("'lines' empty");
+        }
+
+    }
+
+    const getSingleLineTrans = (src, index) => {
         fetch(`${serverUri}/single-line-trans`, {
             method: 'post',
             headers: {
@@ -102,8 +127,8 @@ export default function CurrLyricsContextProvider(props) {
         })
             .then(response => response.json())
             .then(data => {
-               if (data?.trans) {
-                let newLines = lines;
+                if (data?.trans) {
+                    let newLines = lines;
                     console.log(data);
                     newLines[index] = { src: src, trans: data?.trans };
                     setLines(newLines);
@@ -159,7 +184,7 @@ export default function CurrLyricsContextProvider(props) {
             });
     }
 
-    const getLinesTrans = (src, index) => {
+    const getFullTrans = (src, index) => {
         fetch(`${serverUri}/line-trans`, {
             method: 'post',
             headers: {
@@ -240,7 +265,7 @@ export default function CurrLyricsContextProvider(props) {
             });
     }
 
-    const actions = { getLines, getLinesTrans, getLineTrans,  checkNextTrans };
+    const actions = { getLines, getFullTrans, getPartlyTrans, getSingleLineTrans, checkNextTrans };
 
     return (
         <CurrLyricsContext.Provider value={{ title, proccess, currLyrics, singles, lines, cou, ...actions }}>
