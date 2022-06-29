@@ -51,9 +51,9 @@ export default function CurrLyricsContextProvider(props) {
                     let lengthCounter = 0;
                     let round = 0;
                     ly.split(/(?:\r\n|\r|\n)/g).map((line) => { // TODO split also by commas?
-                        if (line.length >= 2){
-                           newLines.push({ src: line, trans: '' });
-                        } 
+                        if (line.length >= 2) {
+                            newLines.push({ src: line.replace('.', ''), trans: '' }); // todo remove the replace if dont need
+                        }
                     });
                     setLines(newLines);
                     setCurrLyrics(ly);
@@ -79,9 +79,9 @@ export default function CurrLyricsContextProvider(props) {
 
     const checkNextTrans = () => {
         let count = false;
-        debugger
+
         for (let index = 0; index < lines.length; index++) {
-            
+
             let line = lines[index];
             if (count === true) {
                 break;
@@ -89,8 +89,8 @@ export default function CurrLyricsContextProvider(props) {
                 count = true;
 
                 if (window.location.origin.includes('github')) getFullTrans(line.src, index); // dev
-                else getPartlyTrans(line.src, index); // prod
-                // else getSingleLineTrans(line.src, index); // prod
+                // else getPartlyTrans(line.src, index); // prod
+                else getSingleLineTrans(line.src, index); // prod
 
                 break;
             } else {
@@ -99,18 +99,17 @@ export default function CurrLyricsContextProvider(props) {
         }
     }
 
-    const getPartlyTrans = (src, index) => {
+    const getPartlyTrans = (src, index) => { // doesnt work properly
 
         let plusedLines = '';
         for (let innerIdx = index; innerIdx < lines.length; innerIdx++) {
             const line = lines[innerIdx];
-            if (plusedLines.length >= 1600){
-               break;    
-            } 
-            if(line.trans === "   ") plusedLines += line.src + " $$$ + ";
-            if(line.trans != "   ") plusedLines += line.src + " + ";
+            if (plusedLines.length >= 1600) {
+                break;
+            }
+            if (line.trans === "   ") plusedLines += line.src + " $. ";
+            if (line.trans != "   ") plusedLines += ` ${innerIdx} ${line.src} . `;
         }
-        console.log(plusedLines);
 
         fetch(`${serverUri}/single-line-trans`, {
             method: 'post',
@@ -124,23 +123,31 @@ export default function CurrLyricsContextProvider(props) {
         })
             .then(response => response.json())
             .then(data => {
-                console.log(data.trans);
+
                 if (data?.trans.length >= 1) {
                     let newLines = lines;
 
-                    data.trans = data.trans.replaceAll("++");
-                    data.trans = data.trans.replaceAll("+++");
+                    // data.trans = data.trans.replaceAll("++", '+');
+                    // data.trans = data.trans.replaceAll("+++", '+');
 
-                    data.trans.split("+").map((e)=>{
-                
-                        if(e.includes("$")) newLines[index].trans = '   ';
-                        else newLines[index].trans = e.replace('+', '');
+                    data.trans.split('.').map((e) => {
+                        try {
+                            console.log(e);
+                            if(e.includes("$") || e.includes("[")){
+                                newLines[index].trans = '   ';
+                            }else{
+                                let extractIndex = Number(e.match(/\d+/)[0].replaceAll('.',''));
+                                newLines[extractIndex].trans = e.replace(extractIndex, '');
+                            }
+                        } catch {
+                            if(e.includes("$")) newLines[index].trans = '   ';
+                        }
                         index++;
                     })
                     setLines(newLines);
 
                     let lastTrans = lines[lines.length - 1]?.trans;
-    
+
                     if (lastTrans.length >= 1) {
                         sessionStorage.setItem('currLines', JSON.stringify(lines));
                         sessionStorage.setItem('cuurSongTitle', (title));
@@ -168,7 +175,7 @@ export default function CurrLyricsContextProvider(props) {
             }
             ).catch((e) => {
                 let newLines = lines;
-                
+
                 if (lines[index].trans === '') {
                     newLines[index] = { src: src, trans: 'טוען תרגום..' };
                 }

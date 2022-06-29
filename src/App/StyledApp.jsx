@@ -9,10 +9,10 @@ const StyledApp = styled(App)`
   color: ${props => props.theme.palette.secondary.main};
 
   a{
+    color: #fff;
+    &hover{
       color: #fff;
-      &hover{
-        color: #fff;
-      }
+    }
   }
 
   .page-h2{
@@ -62,6 +62,11 @@ const StyledApp = styled(App)`
     color: #fff;
     background-color: #2D4260;
     border-radius: unset;
+
+    @media (min-width: 600px) {
+      letter-spacing: 0.5px;
+      word-spacing: 0.5px;
+    }
   }
 
   .loader{

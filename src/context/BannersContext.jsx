@@ -5,6 +5,7 @@ export const BannersContext = React.createContext(undefined);
 export default function BannersContextProvider(props) {
     const [banners, setBanners] = useState({
         main: { open: true, severity: "warning", title: "האתר בבניה", message: "" },
+        click_ad: { open: true, severity: "warning", title: "", message: "רוצה לקבל תרגום יעיל ומהיר יותר? הקלק על פרסומת" },
         snackbar: { open: false, severity: "success", title: "", message: "This is a Snackbar!" },
     });
 
