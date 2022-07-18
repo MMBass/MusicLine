@@ -4,8 +4,8 @@ import path from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  // base: '/', // prod - to musicline-prod repo
-  base: '/MusicLine/', // dev - to gh-pages branch
+  base: '/', // prod - to musicline-prod repo
+  // base: '/MusicLine/', // dev - to gh-pages branch
 
   plugins: [react()],
   resolve: {

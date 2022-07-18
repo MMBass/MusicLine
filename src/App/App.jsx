@@ -77,10 +77,10 @@ function App({ className }) {
             <HeadTags></HeadTags>
             <Header className="header"></Header>
 
-            {(bannersContext.click_ad.open) &&
+            {(bannersContext.main?.open) &&
               <Alert severity="warning" className='main-alert'>
-                <AlertTitle>{bannersContext.click_ad.title}</AlertTitle>
-                {bannersContext.click_ad.message}
+                <AlertTitle>{bannersContext.main.title}</AlertTitle>
+                {bannersContext.main.message}
               </Alert>
             }
 

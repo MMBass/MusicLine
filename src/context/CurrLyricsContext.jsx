@@ -17,8 +17,8 @@ export default function CurrLyricsContextProvider(props) {
 
     const serverUri = 'https://musicline-backend.vercel.app';
 
-    // const serverUri = 'http://localhost:5000';
-
+    // const serverUri = (location.hostname === "localhost" || location.hostname === "127.0.0.1") ? 'http://localhost:5000' : 'https://musicline-backend.vercel.app';
+     
     const getLines = (currSong, songTitle) => {
         setProccess(true);
         loadersContext.openLoader('main');
@@ -38,7 +38,7 @@ export default function CurrLyricsContextProvider(props) {
             .then(data => {
 
                 loadersContext.closeLoader('main');
-                sessionStorage.removeItem('currLines'); // TODO track if running every reload
+                sessionStorage.removeItem('currLines');
 
                 if (data?.lyrics) {
 
@@ -111,7 +111,7 @@ export default function CurrLyricsContextProvider(props) {
             if (line.trans != "   ") plusedLines += ` ${innerIdx} ${line.src} . `;
         }
 
-        fetch(`${serverUri}/single-line-trans`, {
+        fetch(`${serverUri}/trans/single-line`, {
             method: 'post',
             headers: {
                 'Accept': 'application/json',
@@ -198,7 +198,7 @@ export default function CurrLyricsContextProvider(props) {
     }
 
     const getSingleLineTrans = (src, index) => {
-        fetch(`${serverUri}/single-line-trans`, {
+        fetch(`${serverUri}/trans/single-line`, {
             method: 'post',
             headers: {
                 'Accept': 'application/json',
@@ -268,7 +268,7 @@ export default function CurrLyricsContextProvider(props) {
     }
 
     const getFullTrans = (src, index) => {
-        fetch(`${serverUri}/line-trans`, {
+        fetch(`${serverUri}/trans/lines`, {
             method: 'post',
             headers: {
                 'Accept': 'application/json',

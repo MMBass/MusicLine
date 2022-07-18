@@ -43,9 +43,10 @@ function LyricToolTip({ className, ...props }) {
   function callResults() {
 
     const serverUri = 'https://musicline-backend.vercel.app';
-    // const serverUri = 'http://localhost:5000';
+    // const serverUri = (location.hostname === "localhost" || location.hostname === "127.0.0.1") ? 'http://localhost:5000' : 'https://musicline-backend.vercel.app';
 
-    fetch(`${serverUri}/single-trans`, {
+    
+    fetch(`${serverUri}/trans/single`, {
       method: 'post',
       headers: {
         'Accept': 'application/json',
